@@ -1,0 +1,51 @@
+<div class="header-upper">
+  <div class="container">
+    <button class="header-upper__location btn-reset">г. Брест</button>
+    <app-contacts
+      [isCollapsed]="true"
+      class="contacts__dropdown"
+    ></app-contacts>
+    <div class="contacts-time">
+      <p>контакт-центр с 8:00 до 22:00</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="header">
+    <a routerLink="" class="logo">
+      <img src="./assets/icons/logo.svg" alt="Logo" />
+    </a>
+    <button (click)="toggleCatalogDropdown()" class="btn-rounded">
+      <div [class.open]="isCatalogActive$ | async" class="catalog-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span>Каталог товаров</span>
+    </button>
+    <input type="text" />
+    <app-profile-dropdown class="profile__dropdown"></app-profile-dropdown>
+    <a routerLink="cart" class="btn-rounded btn-link">Корзина</a>
+    <app-catalog-dropdown *ngIf="isCatalogActive$ | async" class="catalog__dropdown"></app-catalog-dropdown>
+  </div>
+</div>
+
+<div class="categories__wrapper">
+  <div class="container">
+    <swiper
+      id="header__categories-swiper"
+      class="categories"
+      [freeMode]="true"
+      [slidesPerView]="'auto'"
+    >
+      <ng-template *ngFor="let category of categories$ | async" swiperSlide>
+        <li>
+          <a [routerLink]="['list', category.id]">
+            {{ category.name }}
+          </a>
+        </li>
+      </ng-template>
+    </swiper>
+  </div>
+</div>

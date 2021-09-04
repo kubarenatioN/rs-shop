@@ -1,0 +1,31 @@
+.contacts__wrapper {
+  display: flex;
+  position: relative;
+}
+.contacts__dropdown {
+  padding: 16px 4px;
+  border-radius: 6px;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  top: 100%;
+  right: 0;
+  z-index: 2;
+  & a {
+    display: block;
+    padding: 4px 10px;
+  }
+}
+.contacts__dropdown.visible {
+  display: block;
+}
+.contacts__list{
+  display: flex;
+  justify-content: space-between;
+}
+.contacts__wrapper > a,
+.btn-reset {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}

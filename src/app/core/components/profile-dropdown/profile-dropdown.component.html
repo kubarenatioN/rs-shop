@@ -1,0 +1,17 @@
+<button class="btn-rounded">Аккаунт</button>
+<div class="dropdown" [class.visible]="false">
+  <img src="" alt="User avatar" class="avatar" />
+  <button>Войти</button>
+  <a routerLink="cart">Корзина</a>
+  <ul>
+    <li>
+      <a routerLink="wishes">Избранные товары</a>
+    </li>
+    <li>
+      <a routerLink="viewed">Просмотренные</a>
+    </li>
+    <li>
+      <a routerLink="waitlist">Лист ожидания</a>
+    </li>
+  </ul>
+</div>

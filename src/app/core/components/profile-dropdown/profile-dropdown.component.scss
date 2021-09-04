@@ -1,0 +1,15 @@
+:host {
+  position: relative;
+}
+.dropdown {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 0);
+  flex-direction: column;
+}
+
+.dropdown.visible {
+  display: flex;
+}

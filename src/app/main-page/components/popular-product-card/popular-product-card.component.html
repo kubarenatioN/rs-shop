@@ -1,0 +1,17 @@
+<a [routerLink]="product.id">
+  <img [src]="product.imageUrls[0]" [alt]="product.name">
+  <div class="info">
+    <p class="title">
+      {{product.name}}
+    </p>
+    <p class="descr">
+      {{product.description}}
+    </p>
+    <div class="rating">
+      {{product.rating}}
+    </div>
+    <span class="price">
+      {{product.price | currency}}
+    </span>
+  </div>
+</a>

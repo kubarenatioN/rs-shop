@@ -1,0 +1,15 @@
+.dropdown {
+  padding: 20px;
+  border-radius: 6px;
+  background-color: #fff;
+  display: none;
+  &.visible {
+    display: block;
+  }
+}
+
+.list {
+  &__wrapper {
+    display: flex;
+  }
+}

@@ -1,0 +1,19 @@
+<div class="container">
+  <swiper
+  *ngIf="slides$ | async as slides"
+  #swiper
+  [navigation]="true"
+  [slidesPerView]="1"
+  [loop]="true"
+  >
+    <ng-template 
+    *ngFor="let slide of slides" 
+    swiperSlide>
+      <a [routerLink]="['list', 'some id']">
+        <img src="./assets/images/{{ slide.img }}" alt="Slide picture" />
+        <!-- {{slide}} -->
+      </a>
+    </ng-template>
+  </swiper>
+
+</div>

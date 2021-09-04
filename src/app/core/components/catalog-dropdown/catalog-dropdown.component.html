@@ -1,0 +1,22 @@
+<div [class.visible]="isActive$ | async" class="dropdown">
+  <p *ngIf="isLoading$ | async; else catalog">Loading...</p>
+  <ng-template #catalog>
+    <div class="list__wrapper">
+      <ul class="list__main-menu">
+        <li
+        *ngFor="let baseCategory of baseCategories"
+        (mouseover)="loadOtherCategories(baseCategory.id)"
+        >
+          {{ baseCategory.name }}
+        </li>
+      </ul>
+      <ul class="list__secondary-menu">
+        <li *ngFor="let subCategory of secondaryCategories">
+          <a [routerLink]="subCategory.id">
+            {{subCategory.name}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+</div>
