@@ -1,4 +1,4 @@
-import { IProduct } from "src/app/shared/models/product.model";
+import { IProduct } from 'src/app/shared/models/product.model'
 
 export interface IGoodsResponse {
   [baseCategory: string]: IGoodsBaseCategory

@@ -13,3 +13,59 @@
     display: flex;
   }
 }
+
+// Icon Animation
+.catalog-icon {
+  width: 25px;
+  height: 20px;
+  position: relative;
+  margin: 0 auto;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.catalog-icon span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: #941e94;
+  border-radius: 2px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+.catalog-icon span:nth-child(1) {
+  top: 0px;
+}
+
+.catalog-icon span:nth-child(2),
+.catalog-icon span:nth-child(3) {
+  top: 8px;
+}
+
+.catalog-icon span:nth-child(4) {
+  top: 16px;
+}
+
+.catalog-icon.open span:nth-child(1) {
+  top: 8px;
+  width: 0%;
+  left: 50%;
+}
+
+.catalog-icon.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+.catalog-icon.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.catalog-icon.open span:nth-child(4) {
+  top: 8px;
+  width: 0%;
+  left: 50%;
+}

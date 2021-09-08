@@ -4,16 +4,18 @@
     <div class="list__wrapper">
       <ul class="list__main-menu">
         <li
-        *ngFor="let baseCategory of baseCategories"
-        (mouseover)="loadOtherCategories(baseCategory.id)"
+          *ngFor="let baseCategory of baseCategories"
+          (mouseover)="loadOtherCategories(baseCategory.id)"
         >
-          {{ baseCategory.name }}
+          <a [routerLink]="['category', baseCategory.id]">
+            {{ baseCategory.name }}
+          </a>
         </li>
       </ul>
       <ul class="list__secondary-menu">
         <li *ngFor="let subCategory of secondaryCategories">
-          <a [routerLink]="subCategory.id">
-            {{subCategory.name}}
+          <a [routerLink]="['category', currentBaseCategoryId, subCategory.id]">
+            {{ subCategory.name }}
           </a>
         </li>
       </ul>

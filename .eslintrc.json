@@ -17,9 +17,29 @@
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "airbnb-typescript/base"
+        "airbnb-typescript/base",
+        "plugin:prettier/recommended"
       ],
       "rules": {
+        "arrow-body-style": ["error", "as-needed"],
+        "class-methods-use-this": "off",
+        "arrow-parens": "off",
+        "prettier/prettier": [
+          "error",
+          {
+            "arrowParens": "avoid",
+            "semi": false,
+            "trailingComma": "none"
+          }
+        ],
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            "allowExpressions": true
+          }
+        ],
+        "@typescript-eslint/comma-dangle": "off",
+        "import/prefer-default-export": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {

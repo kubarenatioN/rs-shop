@@ -1,10 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HeaderHttpService } from '../../services/header-http.service';
-import SwiperCore, {FreeMode} from 'swiper'
-import { IPrimaryCategory } from 'src/app/shared/models/primary-category.model';
-import { CatalogDropdownService } from '../../services/catalog-dropdown.service';
-import { ICategory } from 'src/app/shared/models/category.model';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core'
+import { Observable } from 'rxjs'
+import { ICategory } from 'src/app/shared/models/category.model'
+import SwiperCore, { FreeMode } from 'swiper'
+import { CatalogDropdownService } from '../../services/catalog-dropdown.service'
+import { HeaderHttpService } from '../../services/header-http.service'
 
 SwiperCore.use([FreeMode])
 
@@ -13,19 +19,40 @@ SwiperCore.use([FreeMode])
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-
+export class HeaderComponent implements OnInit, AfterViewInit {
   isCatalogActive$ = this.catalogService.isActive$
 
   categories$?: Observable<ICategory[]>
 
-  constructor(private httpService: HeaderHttpService, private catalogService: CatalogDropdownService) { }
+  @ViewChild('catalogBtn') catalogBtn!: ElementRef
+
+  @ViewChild('catalogDropdown', {
+    read: ElementRef
+  })
+  dropdown!: ElementRef
+
+  constructor(
+    private httpService: HeaderHttpService,
+    private catalogService: CatalogDropdownService,
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit(): void {
     this.categories$ = this.httpService.getCategories()
   }
 
-  toggleCatalogDropdown() {
+  ngAfterViewInit(): void {
+    this.renderer.listen('window', 'click', (event: PointerEvent) => {
+      if (
+        !this.catalogBtn.nativeElement.contains(event.target) &&
+        !this.dropdown.nativeElement.contains(event.target)
+      ) {
+        this.catalogService.close()
+      }
+    })
+  }
+
+  toggleCatalogDropdown(): void {
     this.catalogService.toggle()
   }
 }

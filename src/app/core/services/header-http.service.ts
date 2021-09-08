@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ICategory } from 'src/app/shared/models/category.model';
-import { IPrimaryCategory } from 'src/app/shared/models/primary-category.model';
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
+import { ICategory } from 'src/app/shared/models/category.model'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class HeaderHttpService {
 
   constructor(private http: HttpClient) {}
 
-  getCategories() {
+  getCategories(): Observable<ICategory[]> {
     return this.http.get<ICategory[]>(this.categoriesReqUrl)
   }
 }

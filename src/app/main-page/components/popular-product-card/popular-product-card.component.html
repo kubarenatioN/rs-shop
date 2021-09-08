@@ -1,17 +1,17 @@
 <a [routerLink]="product.id">
-  <img [src]="product.imageUrls[0]" [alt]="product.name">
+  <img [src]="product.imageUrls[0]" [alt]="product.name" />
   <div class="info">
     <p class="title">
-      {{product.name}}
+      {{ product.name }}
     </p>
     <p class="descr">
-      {{product.description}}
+      {{ product.description }}
     </p>
     <div class="rating">
-      {{product.rating}}
+      {{ product.rating }}
     </div>
     <span class="price">
-      {{product.price | currency}}
+      {{ product.price | currency: "BYN":"symbol":"1.0-2":"ru" }}
     </span>
   </div>
 </a>

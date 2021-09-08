@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
-import { MainComponent } from './pages/main/main.component';
-import { PopularGoodsComponent } from './components/popular-goods/popular-goods.component';
-import { MainSliderComponent } from './components/main-slider/main-slider.component';
-import { HttpClientModule } from '@angular/common/http';
-import { MainPageRoutingModule } from './main-page-routing.module';
-import { PopularProductCardComponent } from './components/popular-product-card/popular-product-card.component';
-
-
+import { NgModule } from '@angular/core'
+import { HttpClientModule } from '@angular/common/http'
+import { SharedModule } from '../shared/shared.module'
+import { MainComponent } from './pages/main/main.component'
+import { PopularGoodsComponent } from './components/popular-goods/popular-goods.component'
+import { MainSliderComponent } from './components/main-slider/main-slider.component'
+import { MainPageRoutingModule } from './main-page-routing.module'
+import { PopularProductCardComponent } from './components/popular-product-card/popular-product-card.component'
 
 @NgModule({
   declarations: [
@@ -17,11 +15,7 @@ import { PopularProductCardComponent } from './components/popular-product-card/p
     MainSliderComponent,
     PopularProductCardComponent
   ],
-  imports: [
-    SharedModule,
-    HttpClientModule,
-    MainPageRoutingModule
-  ],
+  imports: [SharedModule, HttpClientModule, MainPageRoutingModule],
   exports: [MainComponent, MainSliderComponent]
 })
-export class MainPageModule { }
+export class MainPageModule {}

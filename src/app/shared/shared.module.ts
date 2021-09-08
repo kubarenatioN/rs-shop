@@ -1,16 +1,13 @@
-import { NgModule } from '@angular/core';
-import { ContactsComponent } from './components/contacts/contacts.component';
+import { NgModule } from '@angular/core'
 import { SwiperModule } from 'swiper/angular'
-import { CommonModule } from '@angular/common';
-import { ContactsStyleDirective } from './directives/contacts-style.directive';
-
+import { CommonModule } from '@angular/common'
+import { ContactsComponent } from './components/contacts/contacts.component'
+import { ContactsStyleDirective } from './directives/contacts-style.directive'
+import { DropdownDirective } from './directives/dropdown.directive'
 
 @NgModule({
-  declarations: [
-    ContactsComponent,
-    ContactsStyleDirective
-  ],
+  declarations: [ContactsComponent, ContactsStyleDirective, DropdownDirective],
   imports: [CommonModule, SwiperModule],
-  exports: [CommonModule, ContactsComponent, SwiperModule]
+  exports: [CommonModule, ContactsComponent, SwiperModule, DropdownDirective]
 })
-export class SharedModule { }
+export class SharedModule {}

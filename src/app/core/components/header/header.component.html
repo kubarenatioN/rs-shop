@@ -15,7 +15,7 @@
     <a routerLink="" class="logo">
       <img src="./assets/icons/logo.svg" alt="Logo" />
     </a>
-    <button (click)="toggleCatalogDropdown()" class="btn-rounded">
+    <button #catalogBtn (click)="toggleCatalogDropdown()" class="btn-rounded">
       <div [class.open]="isCatalogActive$ | async" class="catalog-icon">
         <span></span>
         <span></span>
@@ -24,10 +24,14 @@
       </div>
       <span>Каталог товаров</span>
     </button>
+
     <input type="text" />
     <app-profile-dropdown class="profile__dropdown"></app-profile-dropdown>
     <a routerLink="cart" class="btn-rounded btn-link">Корзина</a>
-    <app-catalog-dropdown *ngIf="isCatalogActive$ | async" class="catalog__dropdown"></app-catalog-dropdown>
+    <app-catalog-dropdown
+      #catalogDropdown
+      class="catalog__dropdown"
+    ></app-catalog-dropdown>
   </div>
 </div>
 
@@ -41,7 +45,7 @@
     >
       <ng-template *ngFor="let category of categories$ | async" swiperSlide>
         <li>
-          <a [routerLink]="['list', category.id]">
+          <a [routerLink]="['category', category.id]">
             {{ category.name }}
           </a>
         </li>

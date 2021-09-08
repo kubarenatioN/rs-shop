@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { IBaseCategory } from 'src/app/shared/models/base-category.model';
-import { IProduct } from 'src/app/shared/models/product.model';
-import { CatalogDropdownService } from '../../services/catalog-dropdown.service';
-import { CatalogFacadeService } from '../../services/catalog/catalog-facade.service';
+import { Component, OnInit } from '@angular/core'
+import { IBaseCategory } from 'src/app/shared/models/base-category.model'
+import { IProduct } from 'src/app/shared/models/product.model'
+import { CatalogDropdownService } from '../../services/catalog-dropdown.service'
+import { CatalogFacadeService } from '../../services/catalog/catalog-facade.service'
 
 @Component({
   selector: 'app-catalog-dropdown',
   templateUrl: './catalog-dropdown.component.html',
   styleUrls: ['./catalog-dropdown.component.scss']
 })
-export class CatalogDropdownComponent implements OnInit{
+export class CatalogDropdownComponent implements OnInit {
   isActive$ = this.dropdownService.isActive$
 
   isLoading$ = this.catalogFacade.isLoading$
@@ -19,9 +18,14 @@ export class CatalogDropdownComponent implements OnInit{
 
   secondaryCategories: IProduct[] = []
 
-  constructor(private dropdownService: CatalogDropdownService, private catalogFacade: CatalogFacadeService) { }
+  currentBaseCategoryId = ''
 
-  ngOnInit() {
+  constructor(
+    private dropdownService: CatalogDropdownService,
+    private catalogFacade: CatalogFacadeService
+  ) {}
+
+  ngOnInit(): void {
     this.catalogFacade.loadBaseCategories()
     this.catalogFacade.baseCategories$.subscribe(categories => {
       this.baseCategories = categories
@@ -31,8 +35,17 @@ export class CatalogDropdownComponent implements OnInit{
     })
   }
 
-  loadOtherCategories(baseCategoryId: string) {
-    this.secondaryCategories = this.catalogFacade.getSecondaryCategories(baseCategoryId) || []
+  toggle(): void {
+    this.dropdownService.toggle()
   }
 
+  close(): void {
+    this.dropdownService.close()
+  }
+
+  loadOtherCategories(baseCategoryId: string): void {
+    this.secondaryCategories =
+      this.catalogFacade.getSecondaryCategories(baseCategoryId) || []
+    this.currentBaseCategoryId = baseCategoryId
+  }
 }

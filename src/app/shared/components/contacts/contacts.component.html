@@ -1,31 +1,26 @@
-<div 
-class="contacts__wrapper"
-*ngIf="isCollapsed; else expanded">
-
-<a href="https://viber.com" target="blank">
-  <img src="./assets/icons/viber-logo.svg" alt="Viber Logo" />
-  <span>Viber</span>
-</a>
-<a href="tel:375293021021">
-  <img src="./assets/icons/a1-logo.svg" alt="A1 Logo" />
-  <span>+375 29 302 10 21</span>
-</a>
-<button 
-(click)="expand()"
-class="btn-reset">
-  <span>Еще</span>
-  <span class="material-icons">arrow_drop_down</span>
-</button>
-<ul 
-class="contacts__dropdown"
-[class.visible]="isVisible">
-  <li>
-    <a href="tel:375293021021">+375 29 302 10 21</a>
-  </li>
-  <li>
-    <a>Telegram</a>
-  </li>
-</ul>
+<div class="contacts__wrapper" *ngIf="isCollapsed; else expanded">
+  <a href="https://viber.com" target="blank">
+    <img src="./assets/icons/viber-logo.svg" alt="Viber Logo" />
+    <span>Viber</span>
+  </a>
+  <a href="tel:375293021021">
+    <img src="./assets/icons/a1-logo.svg" alt="A1 Logo" />
+    <span>+375 29 302 10 21</span>
+  </a>
+  <div appDropdown (closeDropdown)="close()" class="contacts__dropdown-wrapper">
+    <button (click)="toggle()" class="btn-reset">
+      <span>Еще</span>
+      <span class="material-icons">arrow_drop_down</span>
+    </button>
+    <ul class="contacts__dropdown" *ngIf="isVisible">
+      <li>
+        <a href="tel:375293021021">+375 29 302 10 21</a>
+      </li>
+      <li>
+        <a>Telegram</a>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <ng-template #expanded>

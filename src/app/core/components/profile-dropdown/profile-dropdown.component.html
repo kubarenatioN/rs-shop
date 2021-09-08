@@ -1,17 +1,25 @@
-<button class="btn-rounded">Аккаунт</button>
-<div class="dropdown" [class.visible]="false">
-  <img src="" alt="User avatar" class="avatar" />
-  <button>Войти</button>
-  <a routerLink="cart">Корзина</a>
-  <ul>
-    <li>
-      <a routerLink="wishes">Избранные товары</a>
-    </li>
-    <li>
-      <a routerLink="viewed">Просмотренные</a>
-    </li>
-    <li>
-      <a routerLink="waitlist">Лист ожидания</a>
-    </li>
-  </ul>
+<div appDropdown (closeDropdown)="close()">
+  <button
+    class="btn-rounded"
+    [class.active]="isActive$ | async"
+    (click)="toggle()"
+  >
+    Аккаунт
+  </button>
+  <div class="dropdown__menu" *ngIf="isActive$ | async">
+    <img src="" alt="User avatar" class="avatar" />
+    <button>Войти</button>
+    <a routerLink="cart">Корзина</a>
+    <ul>
+      <li>
+        <a routerLink="wishes">Избранные товары</a>
+      </li>
+      <li>
+        <a routerLink="viewed">Просмотренные</a>
+      </li>
+      <li>
+        <a routerLink="waitlist">Лист ожидания</a>
+      </li>
+    </ul>
+  </div>
 </div>

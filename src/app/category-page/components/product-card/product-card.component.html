@@ -1,0 +1,11 @@
+<a class="details-link" [routerLink]="['/details', product.id]">
+  <img class="image" [src]="product.imageUrls[0] || ''" [alt]="product.name" />
+  <p class="name">
+    {{ product.name }}
+  </p>
+  <span class="price">
+    {{ product.price | currency }}
+  </span>
+  <div class="rating">rating: {{ product.rating }}</div>
+  <button class="purchase-btn">В корзину</button>
+</a>
