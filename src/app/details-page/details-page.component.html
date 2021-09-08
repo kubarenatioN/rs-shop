@@ -1,0 +1,31 @@
+<div *ngIf="product" class="container">
+  <h3 class="title">{{product.name}}</h3>
+  <div class="details-main">
+    <app-product-slider [product]="product"></app-product-slider>
+    <div class="details-main__info">
+      <span class="details__price">
+        {{product.price | currency}}
+      </span>
+      <button class="to-cart-btn">
+        В корзину
+      </button>
+      <ul class="info__items-list">
+        <li>
+          Доставка 3 дня
+        </li>
+        <li>
+          Сопутствующие товары
+        </li>
+        <li>
+          Гарантия 3 года
+        </li>
+        <li>
+          Доставка по всей Беларуси
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="details-description">
+    <p>{{product.description}}</p>
+  </div>
+</div>
