@@ -9,6 +9,8 @@ import { IProduct } from 'src/app/shared/models/product.model'
 export class ProductsHttpService {
   private baseUrl = 'http://localhost:3004'
 
+  private productsPerRequest = 8
+
   constructor(private http: HttpClient) {}
 
   getProductsBySubcategory(
@@ -16,7 +18,11 @@ export class ProductsHttpService {
     subcategoryId: string,
     pageNumber: number = 0
   ): Observable<IProduct[]> {
-    const url = `${this.baseUrl}/goods/category/${categoryId}/${subcategoryId}?start=${pageNumber}&count=8`
+    const url = `${
+      this.baseUrl
+    }/goods/category/${categoryId}/${subcategoryId}?start=${
+      pageNumber * this.productsPerRequest
+    }&count=${this.productsPerRequest}`
     return this.http.get<IProduct[]>(url)
   }
 }

@@ -1,4 +1,4 @@
-<a [routerLink]="product.id">
+<a [routerLink]="['details', product.id]">
   <img [src]="product.imageUrls[0]" [alt]="product.name" />
   <div class="info">
     <p class="title">

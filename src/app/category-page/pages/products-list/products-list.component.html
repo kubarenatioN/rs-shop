@@ -1,7 +1,11 @@
 <div class="container">
-  <ul class="list">
-    <li class="col-25" *ngFor="let product of products$ | async">
+  <app-sortbar class="sortbar"></app-sortbar>
+  <ul class="list" *ngIf="products$ | async as products">
+    <li class="col-25" *ngFor="let product of products | sort:sortOptions">
       <app-product-card [product]="product"></app-product-card>
     </li>
   </ul>
+  <button 
+  [disabled]="isAllLoaded$ | async"
+  (click)="loadMoreProducts()">Загрузить еще</button>
 </div>

@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
-import { Observable, Subscription } from 'rxjs'
-import { IProduct } from 'src/app/shared/models/product.model'
-import { ProductsHttpService } from '../../services/products-http.service'
+import { Subscription } from 'rxjs'
+import { ISortOptions } from '../../models/sort-options.model'
+import { ProductsSortService } from '../../services/products-sort.service'
+import { ProductsFacadeService } from '../../services/products/products-facade.service'
 
 @Component({
   selector: 'app-products-list',
@@ -16,16 +17,28 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   private subcategory: string = ''
 
-  products$ = new Observable<IProduct[]>()
+  private pageNumber = 0
+
+  products$ = this.productsFacade.products$
+
+  isAllLoaded$ = this.productsFacade.isAllLoaded$
+
+  sortOptions?: ISortOptions
 
   constructor(
     private route: ActivatedRoute,
-    private http: ProductsHttpService
+    private productsFacade: ProductsFacadeService,
+    private sortService: ProductsSortService
   ) {}
 
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe(route => {
-      this.handleRouteChanged(route)
+      this.pageNumber = 0
+      this.clearProductList()
+      this.handleCategoryChanged(route)
+    })
+    this.sortService.sortOptions$.subscribe(options => {
+      this.sortOptions = options
     })
   }
 
@@ -33,16 +46,26 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     this.routeSubscription.unsubscribe()
   }
 
-  handleRouteChanged(route: Params): void {
+  private handleCategoryChanged(route: Params): void {
     this.category = route.category
     this.subcategory = route.subcategory
     this.getProducts()
   }
 
-  getProducts(): void {
-    this.products$ = this.http.getProductsBySubcategory(
+  private getProducts(): void {
+    this.productsFacade.getProducts(
       this.category,
-      this.subcategory
+      this.subcategory,
+      this.pageNumber
     )
+  }
+
+  loadMoreProducts(): void {
+    this.pageNumber += 1
+    this.getProducts()
+  }
+
+  private clearProductList(): void {
+    this.productsFacade.clear()
   }
 }
