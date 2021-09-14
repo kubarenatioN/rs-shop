@@ -4,8 +4,20 @@
     {{ product.name }}
   </p>
   <span class="price">
-    {{ product.price | currency }}
+    {{ product.price | currency: "BYN":"symbol":"1.0-2":"ru"  }}
   </span>
   <div class="rating">rating: {{ product.rating }}</div>
-  <button class="purchase-btn">В корзину</button>
+  <button class="purchase-btn" 
+  (click)="addToCart(product.id, $event)"
+  *ngIf="!product.isInCart">В корзину</button>
+  <button class="purchase-btn" 
+  (click)="removeFromCart(product.id, $event)"
+  *ngIf="product.isInCart">Убрать из корзины</button>
+
+  <button 
+  (click)="addToFavorite(product.id, $event)"
+  *ngIf="!product.isFavorite">В избранное</button>
+  <button
+  (click)="removeFromFavorite(product.id, $event)"
+  *ngIf="product.isFavorite">Из избранного</button>
 </a>

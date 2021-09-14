@@ -1,0 +1,30 @@
+<div class="login-modal__wrapper">  
+  <h4>Вход</h4>
+  <form #form="ngForm" (ngSubmit)="confirm()">
+    <div class="form-group">
+      <label for="email">Электронная форма</label>
+      <input 
+        type="text" 
+        id="email"
+        name="email"
+        required
+        [(ngModel)]="model.login">
+    </div>
+    <div class="form-group">
+      <label for="password">Пароль</label>
+      <input 
+        type="password" 
+        id="password"
+        name="password"
+        required
+        [(ngModel)]="model.password">
+    </div>
+    <button 
+    [disabled]="!form.valid"
+    type="submit">Войти</button>
+
+    <button (click)="register()">Зарегистрироваться</button>
+  </form>
+  
+  <button (click)="close()">Close</button>
+</div>

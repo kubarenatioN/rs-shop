@@ -6,20 +6,34 @@
   >
     Аккаунт
   </button>
-  <div class="dropdown__menu" *ngIf="isActive$ | async">
+  <div class="dropdown__menu" *ngIf="(isActive$ | async) && ((user$ | async) === null)">
     <img src="" alt="User avatar" class="avatar" />
-    <button>Войти</button>
-    <a routerLink="cart">Корзина</a>
+    <button
+    data-can-close 
+    (click)="openModal(); close()"
+    class="enter-btn btn-reset">Войти</button>
+    <a routerLink="/user/cart">Корзина</a>
     <ul>
       <li>
-        <a routerLink="wishes">Избранные товары</a>
+        <a routerLink="/user/favorite">Избранные товары</a>
       </li>
       <li>
-        <a routerLink="viewed">Просмотренные</a>
-      </li>
-      <li>
-        <a routerLink="waitlist">Лист ожидания</a>
+        <a routerLink="/user/waitlist">Лист ожидания</a>
       </li>
     </ul>
+  </div>
+  <div class="dropdown__menu" *ngIf="(isActive$ | async) && ((user$ | async) !== null)">
+    <img src="" alt="User avatar" class="avatar" />
+    <span>{{(user$ | async)!.firstName}}</span>
+    <a routerLink="/user/cart">Корзина</a>
+    <ul>
+      <li>
+        <a routerLink="/user/favorite">Избранные товары</a>
+      </li>
+      <li>
+        <a routerLink="/user/waitlist">Лист ожидания</a>
+      </li>
+    </ul>
+    <button (click)="logout()">Logout</button>
   </div>
 </div>

@@ -1,12 +1,21 @@
 <div *ngIf="product" class="container">
   <h3 class="title">{{product.name}}</h3>
   <div class="details-main">
-    <app-product-slider [product]="product"></app-product-slider>
+    <swiper
+    class="details-main__slider"
+[slidesPerView]="1"
+[spaceBetween]="10">
+  <ng-template 
+    swiperSlide
+    *ngFor="let image of product.imageUrls">
+    <img class="slider-image" [src]="image" [alt]="product.name">
+  </ng-template>
+</swiper>
     <div class="details-main__info">
       <span class="details__price">
-        {{product.price | currency}}
+        {{product.price | currency: "BYN":"symbol":"1.0-2":"ru" }}
       </span>
-      <button class="to-cart-btn">
+      <button class="to-cart-btn btn-accent">
         В корзину
       </button>
       <ul class="info__items-list">

@@ -17,3 +17,17 @@
 .purchase-btn {
   margin-top: auto;
 }
+
+.details-link {
+  background-color: #fff;
+  transition: .2s;
+  position: relative;
+  &:hover {
+    box-shadow: var(--card-hover-shadow);
+    z-index: 1;
+    color: initial;
+    & .name {
+      text-decoration: underline;
+    }
+  }
+}

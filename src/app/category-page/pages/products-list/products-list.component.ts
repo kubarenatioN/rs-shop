@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
 import { Subscription } from 'rxjs'
+import { UserGoodsFacadeService } from 'src/app/core/services/user-goods/user-goods-facade.service'
 import { ISortOptions } from '../../models/sort-options.model'
 import { ProductsSortService } from '../../services/products-sort.service'
 import { ProductsFacadeService } from '../../services/products/products-facade.service'
@@ -28,7 +29,8 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private productsFacade: ProductsFacadeService,
-    private sortService: ProductsSortService
+    private sortService: ProductsSortService,
+    private userGoodsFacade: UserGoodsFacadeService
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +46,22 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe()
+  }
+
+  addItemToCart(itemId: string): void {
+    this.userGoodsFacade.addToCart(itemId)
+  }
+
+  removeItemFromCart(itemId: string): void {
+    this.userGoodsFacade.removeFromCart(itemId)
+  }
+
+  addItemToFavorite(itemId: string): void {
+    this.userGoodsFacade.addToFavorite(itemId)
+  }
+
+  removeItemFromFavorite(itemId: string): void {
+    this.userGoodsFacade.removeFromFavorite(itemId)
   }
 
   private handleCategoryChanged(route: Params): void {

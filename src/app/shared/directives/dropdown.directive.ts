@@ -15,7 +15,8 @@ export class DropdownDirective {
   @Output() closeDropdown = new EventEmitter()
 
   @HostListener('window:click', ['$event'])
-  logInfo(event: PointerEvent): void {
+  handleClick(event: PointerEvent): void {
+    // const eventEl = event.target as HTMLElement
     if (!this.eRef.nativeElement.contains(event.target)) {
       this.closeDropdown.emit()
     }

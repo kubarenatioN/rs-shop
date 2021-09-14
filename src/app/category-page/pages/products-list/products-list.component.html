@@ -2,7 +2,12 @@
   <app-sortbar class="sortbar"></app-sortbar>
   <ul class="list" *ngIf="products$ | async as products">
     <li class="col-25" *ngFor="let product of products | sort:sortOptions">
-      <app-product-card [product]="product"></app-product-card>
+      <app-product-card 
+      (addToCartEvent)="addItemToCart($event)" 
+      (removeFromCartEvent)="removeItemFromCart($event)" 
+      (addToFavoriteEvent)="addItemToFavorite($event)"
+      (removeFromFavoriteEvent)="removeItemFromFavorite($event)"
+      [product]="product"></app-product-card>
     </li>
   </ul>
   <button 

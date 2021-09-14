@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { AuthService } from 'src/app/core/services/auth/auth.service'
 import { ProductsHttpService } from './products-http.service'
 import { ProductsStoreService } from './products-store.service'
 
@@ -12,8 +13,19 @@ export class ProductsFacadeService {
 
   constructor(
     private store: ProductsStoreService,
-    private http: ProductsHttpService
-  ) {}
+    private http: ProductsHttpService,
+    private auth: AuthService
+  ) {
+    this.auth.user$.subscribe(user => {
+      // console.log('user:', user)
+      this.store.user = user
+      if (user !== null) {
+        this.store.updateGoodsStatus(user)
+      } else {
+        this.store.resetGoodsStatus()
+      }
+    })
+  }
 
   getProducts(
     categoryId: string,

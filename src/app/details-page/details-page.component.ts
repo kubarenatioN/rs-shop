@@ -20,7 +20,6 @@ export class DetailsPageComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id')!
     this.http.getProduct(id).subscribe(product => {
       this.product = product
-      console.log(product)
     })
   }
 }

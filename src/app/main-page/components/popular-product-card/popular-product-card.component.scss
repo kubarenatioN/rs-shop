@@ -8,10 +8,10 @@ a {
   display: flex;
   background-color: #fff;
   min-height: 100px;
+  position: relative;
   &:hover {
     color: #000;
     box-shadow: var(--card-hover-shadow);
-    position: relative;
     z-index: 1;
     & .title {
       text-decoration: underline;
