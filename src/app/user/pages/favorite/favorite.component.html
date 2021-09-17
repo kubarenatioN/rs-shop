@@ -1,0 +1,9 @@
+<ul class="list">
+  <li class="list__item" *ngFor="let item of products$ | async">
+    <app-favorite-item 
+    [product]="item"
+    (addToCartEvent)="addToCart($event)"
+    (removeFromCartEvent)="removeFromCart($event)"
+    (removeFromFavoriteEvent)="removeFromFavorite($event)"></app-favorite-item>
+  </li>
+</ul>

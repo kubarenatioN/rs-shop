@@ -71,6 +71,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   }
 
   private getProducts(): void {
+    // console.log('try to get products from products-list component')
     this.productsFacade.getProducts(
       this.category,
       this.subcategory,

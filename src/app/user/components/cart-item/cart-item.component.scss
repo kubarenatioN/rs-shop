@@ -1,0 +1,22 @@
+.cart-item {
+  display: flex;
+}
+.image {
+  width: 180px;
+  height: 120px;
+  object-fit: contain;
+}
+.name__wrapper {
+  width: 20%;
+  margin-left: 20px;
+}
+.counter {
+  width: 100px;
+}
+.delivery {
+  width: 200px;
+}
+
+.price {
+  min-width: 100px;
+}

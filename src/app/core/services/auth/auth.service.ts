@@ -56,4 +56,12 @@ export class AuthService {
       this.store.setUser(info, this.token)
     })
   }
+
+  getCart(): string[] {
+    return this.store.userCart
+  }
+
+  getFavorites(): string[] {
+    return this.store.userFavorites
+  }
 }

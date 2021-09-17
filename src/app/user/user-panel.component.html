@@ -1,2 +1,22 @@
-<p>user-panel common html</p>
-<router-outlet></router-outlet>
+<div class="container"> 
+  <ul class="nav">
+    <li>
+      <a routerLink="cart">Корзина</a>
+    </li>
+    <hr />
+    <li>
+      <a routerLink="favorite">Избранное</a>
+    </li>
+    <li>
+      <a routerLink="waitlist">Лист ожидания</a>
+    </li>
+    <hr />
+    <li>
+      <button>Выйти</button>
+    </li>
+  </ul>
+  <div class="content">
+    <h1>{{title}}</h1>
+    <router-outlet (activate)="componentAdded($event)"></router-outlet>
+  </div>
+</div>

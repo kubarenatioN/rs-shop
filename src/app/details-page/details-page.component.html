@@ -1,40 +1,55 @@
-<div *ngIf="product" class="container">
-  <h3 class="title">{{product.name}}</h3>
+<div *ngIf="product$ | async as product" class="container">
+  <h3 class="title">{{ product.name }}</h3>
   <div class="details-main">
-    <swiper
-    class="details-main__slider"
-[slidesPerView]="1"
-[spaceBetween]="10">
-  <ng-template 
-    swiperSlide
-    *ngFor="let image of product.imageUrls">
-    <img class="slider-image" [src]="image" [alt]="product.name">
-  </ng-template>
-</swiper>
+    <div class="details-main__slider-container">
+      <swiper
+        class="details-main__slider"
+        #detailsSwiper
+      >
+        <ng-template swiperSlide *ngFor="let image of product.imageUrls">
+          <img class="slider__image" [src]="image" [alt]="product.name" />
+        </ng-template>
+      </swiper>
+      <swiper
+      class="details-main__thumbs-slider"
+      #detailsSwiperThumbs
+      [slidesPerView]="3"
+      [spaceBetween]="20">
+        <ng-template swiperSlide *ngFor="let image of product.imageUrls">
+          <img class="slider-thumb__image" [src]="image" [alt]="product.name" />
+        </ng-template>
+      </swiper>
+    </div>
+
     <div class="details-main__info">
       <span class="details__price">
-        {{product.price | currency: "BYN":"symbol":"1.0-2":"ru" }}
+        {{ product.price | currency: 'BYN':'symbol':'1.0-2':'ru' }}
       </span>
-      <button class="to-cart-btn btn-accent">
-        В корзину
-      </button>
+      <button 
+      class="to-cart-btn btn-accent"
+      *ngIf="!isInCart(product.id)"
+      (click)="addToCart(product.id)">В корзину</button>
+      <button 
+      class="to-cart-btn btn-accent"
+      *ngIf="isInCart(product.id)"
+      (click)="removeFromCart(product.id)">Удалить из корзины</button>
+      <button 
+      class="to-cart-btn "
+      *ngIf="!isInFavorite(product.id)"
+      (click)="addToFavorite(product.id)">В избранное</button>
+      <button 
+      class="to-cart-btn "
+      *ngIf="isInFavorite(product.id)"
+      (click)="removeFromFavorite(product.id)">Удалить из избранного</button>
       <ul class="info__items-list">
-        <li>
-          Доставка 3 дня
-        </li>
-        <li>
-          Сопутствующие товары
-        </li>
-        <li>
-          Гарантия 3 года
-        </li>
-        <li>
-          Доставка по всей Беларуси
-        </li>
+        <li>Доставка 3 дня</li>
+        <li>Сопутствующие товары</li>
+        <li>Гарантия 3 года</li>
+        <li>Доставка по всей Беларуси</li>
       </ul>
     </div>
   </div>
   <div class="details-description">
-    <p>{{product.description}}</p>
+    <p>{{ product.description }}</p>
   </div>
 </div>

@@ -1,0 +1,31 @@
+<ng-container *ngIf="order !== null">
+  <div class="heading">
+    <span class="product">
+      Товар
+    </span>
+    <span class="amount">
+      Количество
+    </span>
+    <span class="delivery">
+      Доставка
+    </span>
+    <span class="price">
+      Стоимость
+    </span>
+  </div>
+  <ul>
+    <li *ngFor="let item of products">
+      <app-order-edit-item 
+      [product]="item"
+      [amount]="getProductAmount(item.id)"
+      (itemChanged)="onItemChanged($event)" 
+      (removeFromListEvent)="removeItemFromList($event)"></app-order-edit-item>
+    </li>
+  </ul>
+  <hr>
+  <app-order-form
+  [prevDetails]="order.details"
+  [hasCancelBtn]="false"
+  [canSubmit]="checkAmounts()"
+  (submitOrderEvent)="submitEditOrder($event)"></app-order-form>
+</ng-container>

@@ -1,1 +1,5 @@
-<p>{{ category }}</p>
+<ul>
+  <li *ngFor="let subcat of subcategories$ | async">
+    <a [routerLink]="['/category', category, subcat.id]">{{subcat.name}}</a>
+  </li>
+</ul>

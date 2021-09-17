@@ -1,0 +1,31 @@
+<a [routerLink]="['/details', product.id]">
+  <img 
+  class="image"
+  [src]="product.imageUrls[0]" 
+  [alt]="product.name">
+</a>
+<div class="info">
+  <a [routerLink]="['/details', product.id]">
+    <h6>{{product.name}}</h6>
+  </a>
+  <div class="rating">
+    rating {{product.rating}}
+  </div>
+  <span>
+    {{product.price | currency: "BYN":"symbol":"1.0-2":"ru"}}
+  </span>
+  <button
+  *ngIf="!product.isInCart"
+  (click)="addToCart()">
+    В корзину
+  </button>
+  <button
+  *ngIf="product.isInCart"
+  (click)="removeFromCart()">
+    Удалить из корзины
+  </button>
+  <button
+  (click)="removeFromFavorite()">
+    Удалить из списка
+  </button>
+</div>

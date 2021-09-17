@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
+import { UserGoodsStoreService } from 'src/app/core/services/user-goods/user-goods-store.service'
 import { IProduct } from 'src/app/shared/models/product.model'
-import { IUserInfo } from 'src/app/shared/models/user-info.model'
+import { ISecondaryCategory } from 'src/app/shared/models/secondary-category.model'
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,29 @@ export class ProductsStoreService {
 
   private isAllLoaded$$ = new BehaviorSubject<boolean>(false)
 
+  private subcategories$$ = new BehaviorSubject<ISecondaryCategory[]>([])
+
   products$ = this.products$$.asObservable()
+
+  subcategories$ = this.subcategories$$.asObservable()
 
   isAllLoaded$ = this.isAllLoaded$$.asObservable()
 
-  user: IUserInfo | null = null
+  isUserLogged = false
 
-  addProducts(products: IProduct[]): void {
-    this.products$$.next([...this.products$$.value, ...products])
-    if (this.user !== null) {
-      this.updateGoodsStatus(this.user)
+  get products(): IProduct[] {
+    return this.products$$.value
+  }
+
+  constructor(private userGoodsStore: UserGoodsStoreService) {}
+
+  addProducts(products: IProduct[], isUserLogged: boolean): void {
+    this.isUserLogged = isUserLogged
+    // console.log('add products', products, this.isUserLogged)
+    if (this.isUserLogged) {
+      this.checkNewGoodsStatus(products)
+    } else {
+      this.setProducts([...this.products, ...products])
     }
   }
 
@@ -34,51 +48,39 @@ export class ProductsStoreService {
   }
 
   resetGoodsStatus(): void {
-    let newProducts = this.products$$.value
+    let newProducts = this.products
     newProducts = newProducts.map(p => ({
       ...p,
       isInCart: false,
       isFavorite: false
     }))
-    this.products$$.next(newProducts)
+    this.setProducts(newProducts)
   }
 
-  updateGoodsStatus(user: IUserInfo): void {
-    this.updateCartStatus(user.cart)
-    this.updateFavoriteStatus(user.favorites)
+  updateGoodsStatus(): void {
+    const newProducts = this.products.map(p => ({
+      ...p,
+      isInCart: this.userGoodsStore.isInCart(p.id),
+      isFavorite: this.userGoodsStore.isInFavorite(p.id)
+    }))
+    this.setProducts(newProducts)
   }
 
-  updateCartStatus(cart: string[]): void {
-    let newProducts = this.products$$.value
-    newProducts = newProducts.map(p => {
-      if (cart.includes(p.id)) {
-        return {
-          ...p,
-          isInCart: true
-        }
-      }
-      return {
-        ...p,
-        isInCart: false
-      }
-    })
-    this.products$$.next(newProducts)
+  checkNewGoodsStatus(newGoods: IProduct[]): void {
+    console.log('new goods: ', newGoods)
+    const newProducts = newGoods.map(p => ({
+      ...p,
+      isInCart: this.userGoodsStore.isInCart(p.id),
+      isFavorite: this.userGoodsStore.isInFavorite(p.id)
+    }))
+    this.setProducts([...this.products, ...newProducts])
   }
 
-  updateFavoriteStatus(fav: string[]): void {
-    let newProducts = this.products$$.value
-    newProducts = newProducts.map(p => {
-      if (fav.includes(p.id)) {
-        return {
-          ...p,
-          isFavorite: true
-        }
-      }
-      return {
-        ...p,
-        isFavorite: false
-      }
-    })
-    this.products$$.next(newProducts)
+  setProducts(products: IProduct[]): void {
+    this.products$$.next(products)
+  }
+
+  setSubcategories(subcategories: ISecondaryCategory[]): void {
+    this.subcategories$$.next(subcategories)
   }
 }

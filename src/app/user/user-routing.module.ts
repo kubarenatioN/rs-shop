@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { CartComponent } from './components/cart/cart.component'
-import { FavoriteComponent } from './components/favorite/favorite.component'
-import { WaitlistComponent } from './components/waitlist/waitlist.component'
+import { CartComponent } from './pages/cart/cart.component'
+import { FavoriteComponent } from './pages/favorite/favorite.component'
+import { OrderEditComponent } from './pages/order-edit/order-edit.component'
+import { WaitlistComponent } from './pages/waitlist/waitlist.component'
 import { UserPanelComponent } from './user-panel.component'
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'waitlist',
         component: WaitlistComponent
+      },
+      {
+        path: 'edit-order/:id',
+        component: OrderEditComponent
       }
     ]
   },

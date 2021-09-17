@@ -1,0 +1,31 @@
+.order-details {
+  width: 100%;
+}
+
+.heading {
+  display: flex;
+}
+.product {
+  width: calc(200px + 20%);
+}
+.amount {
+  width: 100px;
+}
+.delivery {
+  width: 200px;
+}
+.price {
+  width: 100px;
+}
+
+.order-details {
+  margin-top: 40px;
+  &__table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  & td, th {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+  }
+}

@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  margin-top: 40px;
+}
+
+.nav {
+  margin-right: 60px;
+  max-width: 180px;
+  width: 100%;
+  li > a {
+    display: inline-block;
+    padding: 6px 20px;
+  }
+}
+
+.content {
+  flex-grow: 1;
+  min-height: 80vh;
+}

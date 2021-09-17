@@ -7,7 +7,8 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { SharedModule } from './shared/shared.module'
 import { CoreModule } from './core/core.module'
-import { MainPageModule } from './main-page/main-page.module'
+import { MainPageModule } from './main-page/main-page.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 registerLocaleData(localeRu, 'ru')
 
@@ -18,7 +19,8 @@ registerLocaleData(localeRu, 'ru')
     AppRoutingModule,
     SharedModule,
     CoreModule,
-    MainPageModule
+    MainPageModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

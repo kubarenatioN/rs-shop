@@ -1,0 +1,11 @@
+.field {
+  border: 1px solid #ccc;
+  border-bottom: 2px solid transparent;
+}
+.ng-valid[required], .ng-valid.required  {
+  border-bottom-color: #42A948; /* green */
+}
+
+.ng-dirty.ng-invalid:not(form)  {
+  border-bottom-color: #a94442; /* red */
+}

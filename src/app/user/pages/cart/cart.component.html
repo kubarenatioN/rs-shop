@@ -1,0 +1,32 @@
+  <div class="heading">
+    <span class="product">
+      Товар
+    </span>
+    <span class="amount">
+      Количество
+    </span>
+    <span class="delivery">
+      Доставка
+    </span>
+    <span class="price">
+      Стоимость
+    </span>
+  </div>
+  <ul>
+    <li *ngFor="let item of products">
+      <app-cart-item 
+      (itemChanged)="onItemChanged($event)" 
+      [product]="item"
+      [amount]="getItemAmount(item.id)"></app-cart-item>
+    </li>
+  </ul>
+  <hr>
+  <button 
+  [disabled]="!checkAmounts() || isOrderFormActive"
+  (click)="makeOrder()">Оформить заказ</button>
+
+  <app-order-form 
+  *ngIf="isOrderFormActive"
+  [canSubmit]="checkAmounts()"
+  (cancelOrderEvent)="cancelOrder()"
+  (submitOrderEvent)="submitOrder($event)"></app-order-form>

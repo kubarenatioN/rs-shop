@@ -1,5 +1,5 @@
 export interface ISecondaryCategory {
   id: string
-  baseCategoryId: string
+  // baseCategoryId: string
   name: string
 }

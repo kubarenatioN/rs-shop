@@ -4,18 +4,28 @@
 }
 .details-main {
   display: flex;
+  // flex-direction: column;
   margin: 0 auto;
-  &__slider {
+  &__slider-container {
     max-width: 660px;
     margin: 0;
-    margin-right: 40px;
+    margin-right: 40px;  
+  }
+  &__thumbs-slider {
+    max-width: 360px;
+    margin: 0 auto;
   }
   &__info {
     display: flex;
     flex-direction: column;
   }  
 }
-.slider-image{
+.slider-thumb__image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.slider__image{
   margin: 0 auto;
   display: block;
 }

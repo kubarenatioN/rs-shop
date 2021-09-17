@@ -1,0 +1,81 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <button 
+  *ngIf="hasCancelBtn"
+  (click)="cancelOrder()">Отменить</button>
+ 
+  <div class="form-group">
+    <mat-form-field 
+    appearance="fill">
+      <mat-label>ФИО</mat-label>
+      <input 
+      matInput
+      #name="ngModel"
+      name="name" 
+      required
+      minlength="3"
+      maxlength="50"
+      [(ngModel)]="model.name">
+      <mat-error>Обязательное поле.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field 
+    appearance="fill">
+      <mat-label>Адрес</mat-label>
+      <input 
+      matInput
+      #address="ngModel"
+      name="address" 
+      required
+      minlength="3"
+      maxlength="250"
+      [(ngModel)]="model.address">
+      <mat-error>Обязательное поле.</mat-error>
+    </mat-form-field>
+  </div>
+  
+  <div class="form-group">
+    <mat-form-field 
+    appearance="fill">
+      <mat-label>Телефон</mat-label>
+      <input 
+      matInput
+      #phone="ngModel"
+      pattern="\+[0-9]{12}"
+      name="phone" 
+      placeholder="+375291234567"
+      required
+      [(ngModel)]="model.phone">
+      <mat-error *ngIf="phone.invalid">{{getPhoneErrorMessage(phone)}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Дата доставки</mat-label>
+      <input 
+      matInput 
+      [min]="minDate" 
+      [max]="maxDate" 
+      [matDatepicker]="picker" 
+      name="deliveryTime"
+      required
+      [(ngModel)]="model.timeToDeliver">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error>Обязательное поле.</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Комментарий</mat-label>
+      <textarea 
+      matInput
+      name="comment"
+      [(ngModel)]="model.comment"></textarea>
+    </mat-form-field>
+  </div>
+  <button 
+  [disabled]="!canSubmit || !form.valid"
+  type="submit">Потвердить</button>
+</form>

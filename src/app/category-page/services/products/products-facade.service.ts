@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
 import { AuthService } from 'src/app/core/services/auth/auth.service'
+import { IProduct } from 'src/app/shared/models/product.model'
 import { ProductsHttpService } from './products-http.service'
 import { ProductsStoreService } from './products-store.service'
 
@@ -9,23 +11,15 @@ import { ProductsStoreService } from './products-store.service'
 export class ProductsFacadeService {
   products$ = this.store.products$
 
+  subcategories$ = this.store.subcategories$
+
   isAllLoaded$ = this.store.isAllLoaded$
 
   constructor(
     private store: ProductsStoreService,
     private http: ProductsHttpService,
     private auth: AuthService
-  ) {
-    this.auth.user$.subscribe(user => {
-      // console.log('user:', user)
-      this.store.user = user
-      if (user !== null) {
-        this.store.updateGoodsStatus(user)
-      } else {
-        this.store.resetGoodsStatus()
-      }
-    })
-  }
+  ) {}
 
   getProducts(
     categoryId: string,
@@ -39,11 +33,25 @@ export class ProductsFacadeService {
           this.store.setIsAllLoaded(true)
           return
         }
-        this.store.addProducts(products)
+        this.store.addProducts(products, this.auth.token !== null)
       })
   }
 
   clear(): void {
     this.store.clear()
+  }
+
+  getProductsById(ids: string[]): Observable<IProduct[]> {
+    return this.http.getProductsById(ids)
+  }
+
+  updateGoodsStatus(): void {
+    this.store.updateGoodsStatus()
+  }
+
+  getSubcategories(id: string): void {
+    this.http.getSubcategories(id).subscribe(res => {
+      this.store.setSubcategories(res?.subCategories ?? [])
+    })
   }
 }

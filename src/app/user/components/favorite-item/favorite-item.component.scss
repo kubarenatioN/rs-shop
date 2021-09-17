@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  padding: 20px;
+  background-color: #fff;
+}
+.image {
+  width: 200px;
+  height: 160px;
+  object-fit: contain;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

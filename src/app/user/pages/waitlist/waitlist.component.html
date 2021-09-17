@@ -1,0 +1,64 @@
+<mat-accordion>
+  <mat-expansion-panel 
+  *ngFor="let order of orders$ | async"
+  (opened)="loadProducts(order)"
+  (closed)="clearProducts()">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Заказ №{{order.id | uppercase}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="order-info">
+      <div class="order-heading">
+        <button (click)="deleteItem(order.id!)">
+          <span class="material-icons-outlined">
+            delete
+          </span>
+        </button>
+        <a [routerLink]="['/user/edit-order', order.id]">
+          <span class="material-icons-outlined">
+            edit
+          </span>
+        </a>
+      </div>
+      <div class="heading">
+        <span class="product">
+          Товар
+        </span>
+        <span class="amount">
+          Количество
+        </span>
+        <span class="delivery">
+          Доставка
+        </span>
+        <span class="price">
+          Стоимость
+        </span>
+      </div>
+      <ul class="order-items">
+        <li *ngFor="let item of products$ | async">
+          <app-order-item [product]="item" [amount]="getAmount(order, item.id)"></app-order-item>
+        </li>
+      </ul>
+      <div class="order-details">
+        <h4>Детали заказа:</h4>
+        <table class="order-details__table">
+          <tr>
+            <th>ФИО</th>
+            <th>Адрес</th>
+            <th>Телефон</th>
+            <th>Дата</th>
+            <th>Комментарий</th>
+          </tr>
+          <tr>
+            <td>{{order.details.name}}</td>
+            <td>{{order.details.address}}</td>
+            <td>{{order.details.phone}}</td>
+            <td>{{order.details.timeToDeliver | date}}</td>
+            <td>{{order.details.comment}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

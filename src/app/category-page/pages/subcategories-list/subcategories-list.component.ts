@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs'
+import { ProductsFacadeService } from '../../services/products/products-facade.service'
 
 @Component({
   selector: 'app-subcategories-list',
@@ -12,11 +13,17 @@ export class SubcategoriesListComponent implements OnInit, OnDestroy {
 
   category: string = ''
 
-  constructor(private route: ActivatedRoute) {}
+  subcategories$ = this.productsFacade.subcategories$
+
+  constructor(
+    private route: ActivatedRoute,
+    private productsFacade: ProductsFacadeService
+  ) {}
 
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe(route => {
       this.category = route.category
+      this.productsFacade.getSubcategories(this.category)
     })
   }
 

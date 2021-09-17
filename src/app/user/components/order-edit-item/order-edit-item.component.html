@@ -1,0 +1,31 @@
+<div class="cart-item">
+  <div class="image__wrapper">
+    <a [routerLink]="['/details', product.id]">
+      <img 
+        class="image" 
+        [src]="product.imageUrls[0]" 
+        [alt]="product.name">
+    </a>
+    <button (click)="removeFromList()">Удалить</button>
+  </div>
+  <div class="name__wrapper">
+    <h6 class="name">
+      <a [routerLink]="['/details', product.id]">
+        {{product.name}}
+      </a>
+    </h6>
+    <span>
+      Кол-во на складе: {{product.availableAmount}}
+    </span>
+  </div>
+  <div class="counter">
+    <input type="number" min="0" [max]="product.availableAmount" [(ngModel)]="amount" (ngModelChange)="recalculatePrice()">
+  </div>
+  <ul class="delivery">
+    <li>Курьером: сегодня</li>
+    <li>Самовывоз: завтра</li>
+  </ul>
+  <span class="price">
+    {{price | currency: "BYN":"symbol":"1.0-2":"ru"}}
+  </span>
+</div>

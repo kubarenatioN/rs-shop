@@ -20,8 +20,17 @@ export class AuthStoreService {
 
   token: string | null = null
 
+  get userCart(): string[] {
+    return this.user$$.value?.cart ?? []
+  }
+
+  get userFavorites(): string[] {
+    return this.user$$.value?.favorites ?? []
+  }
+
   setUser(user: IUserInfo, token: string | null): void {
     this.user$$.next(user)
+    // console.log('user: ', user)
     if (token !== null) {
       this.saveTokenInLocalStorage(token)
     }
