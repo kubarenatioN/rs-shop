@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
-import { IBaseCategory } from 'src/app/shared/models/base-category.model'
+import { ICategory } from 'src/app/shared/models/category.model'
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class CatalogHttpService {
 
   constructor(private http: HttpClient) {}
 
-  getBaseCategories(): Observable<IBaseCategory[]> {
-    return this.http.get<IBaseCategory[]>(
+  getBaseCategories(): Observable<ICategory[]> {
+    return this.http.get<ICategory[]>(
       `${this.baseUrl}${this.baseCategoriesUrl}`
     )
   }

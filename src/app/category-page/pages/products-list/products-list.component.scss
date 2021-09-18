@@ -11,3 +11,12 @@
 .container {
   padding-top: 20px;
 }
+
+.loadmore-btn {
+  display: flex;
+  align-items: center;
+  margin: 20px auto;
+  & span {
+    margin-left: 10px;
+  }
+}

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { UserGoodsFacadeService } from 'src/app/core/services/user-goods/user-goods-facade.service'
+import { IProduct } from 'src/app/shared/models/product.model'
 import { ISortOptions } from '../../models/sort-options.model'
 import { ProductsSortService } from '../../services/products-sort.service'
 import { ProductsFacadeService } from '../../services/products/products-facade.service'
@@ -14,17 +15,23 @@ import { ProductsFacadeService } from '../../services/products/products-facade.s
 export class ProductsListComponent implements OnInit, OnDestroy {
   private routeSubscription!: Subscription
 
+  private sortSubscription!: Subscription
+
+  private productsSubscription!: Subscription
+
   private category: string = ''
 
   private subcategory: string = ''
 
   private pageNumber = 0
 
-  products$ = this.productsFacade.products$
+  products: IProduct[] = []
+
+  // products$ = this.productsFacade.products$
 
   isAllLoaded$ = this.productsFacade.isAllLoaded$
 
-  sortOptions?: ISortOptions
+  sortOptions: ISortOptions | null = null
 
   constructor(
     private route: ActivatedRoute,
@@ -39,13 +46,19 @@ export class ProductsListComponent implements OnInit, OnDestroy {
       this.clearProductList()
       this.handleCategoryChanged(route)
     })
-    this.sortService.sortOptions$.subscribe(options => {
+    this.sortSubscription = this.sortService.sortOptions$.subscribe(options => {
       this.sortOptions = options
+      this.products = [...this.products]
+    })
+    this.productsSubscription = this.productsFacade.products$.subscribe(p => {
+      this.products = [...p]
     })
   }
 
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe()
+    this.sortSubscription.unsubscribe()
+    this.productsSubscription.unsubscribe()
   }
 
   addItemToCart(itemId: string): void {

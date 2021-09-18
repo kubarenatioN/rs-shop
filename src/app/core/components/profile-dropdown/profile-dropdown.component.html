@@ -1,39 +1,96 @@
 <div appDropdown (closeDropdown)="close()">
   <button
-    class="btn-rounded"
+    class="toggle-btn btn-rounded"
     [class.active]="isActive$ | async"
     (click)="toggle()"
   >
-    Аккаунт
+    <span 
+    *ngIf="user === null"
+    class="material-icons-outlined btn-icon">
+      login
+    </span>
+    <span 
+    *ngIf="user !== null"
+    class="material-icons-outlined btn-icon">
+      account_circle
+    </span>
+    <span class="btn-text">
+      Аккаунт
+    </span>
   </button>
-  <div class="dropdown__menu" *ngIf="(isActive$ | async) && ((user$ | async) === null)">
-    <img src="" alt="User avatar" class="avatar" />
+  <div class="dropdown__menu" *ngIf="(isActive$ | async) && (user === null)">
+    <img src="./assets/icons/user.svg" alt="User avatar" class="avatar" />
     <button
     data-can-close 
     (click)="openModal(); close()"
-    class="enter-btn btn-reset">Войти</button>
-    <a routerLink="/user/cart">Корзина</a>
+    class="enter-btn btn-blue">Войти</button>
+    <a 
+    class="list-item"
+    routerLink="/user/cart">
+      <span class="material-icons-outlined btn-icon">
+        shopping_cart
+      </span>
+      Корзина
+    </a>
     <ul>
-      <li>
-        <a routerLink="/user/favorite">Избранные товары</a>
+      <li >
+        <a class="list-item" routerLink="/user/favorite">
+          <span class="material-icons-outlined btn-icon">
+            favorite_border
+          </span>
+          Избранные товары
+        </a>
       </li>
-      <li>
-        <a routerLink="/user/waitlist">Лист ожидания</a>
+      <li >
+        <a class="list-item" routerLink="/user/waitlist">
+          <span class="material-icons-outlined btn-icon">
+            hourglass_empty
+          </span>
+          Лист ожидания
+        </a>
       </li>
     </ul>
   </div>
-  <div class="dropdown__menu" *ngIf="(isActive$ | async) && ((user$ | async) !== null)">
-    <img src="" alt="User avatar" class="avatar" />
-    <span>{{(user$ | async)!.firstName}}</span>
-    <a routerLink="/user/cart">Корзина</a>
+  <div class="dropdown__menu" *ngIf="(isActive$ | async) && (user !== null)">
+    <img src="./assets/icons/user.svg" alt="User avatar" class="avatar" />
+    <span class="username">{{user.firstName}}</span>
+    <a 
+    class="list-item" 
+    routerLink="/user/cart">
+      <span class="material-icons-outlined btn-icon">
+        shopping_cart
+      </span>
+      Корзина
+    </a>
+    <hr>
     <ul>
-      <li>
-        <a routerLink="/user/favorite">Избранные товары</a>
+      <li >
+        <a class="list-item" routerLink="/user/favorite">
+          <span class="material-icons-outlined btn-icon">
+            favorite_border
+          </span>
+          Избранные товары
+        </a>
       </li>
-      <li>
-        <a routerLink="/user/waitlist">Лист ожидания</a>
+      <li >
+        <a class="list-item" routerLink="/user/waitlist">
+          <span class="material-icons-outlined btn-icon">
+            hourglass_empty
+          </span>
+          Лист ожидания
+        </a>
       </li>
     </ul>
-    <button (click)="logout()">Logout</button>
+    <hr>
+    <button
+    class="list-item btn-reset"
+    (click)="logout()">
+      <span class="material-icons-outlined btn-icon">
+        logout
+      </span>
+      <span>
+        Выйти
+      </span> 
+    </button>
   </div>
 </div>

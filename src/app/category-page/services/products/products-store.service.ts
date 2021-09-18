@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
 import { UserGoodsStoreService } from 'src/app/core/services/user-goods/user-goods-store.service'
 import { IProduct } from 'src/app/shared/models/product.model'
-import { ISecondaryCategory } from 'src/app/shared/models/secondary-category.model'
+import { ISubCategory } from 'src/app/shared/models/subcategory.model'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class ProductsStoreService {
 
   private isAllLoaded$$ = new BehaviorSubject<boolean>(false)
 
-  private subcategories$$ = new BehaviorSubject<ISecondaryCategory[]>([])
+  private subcategories$$ = new BehaviorSubject<ISubCategory[]>([])
 
   products$ = this.products$$.asObservable()
 
@@ -30,7 +30,6 @@ export class ProductsStoreService {
 
   addProducts(products: IProduct[], isUserLogged: boolean): void {
     this.isUserLogged = isUserLogged
-    // console.log('add products', products, this.isUserLogged)
     if (this.isUserLogged) {
       this.checkNewGoodsStatus(products)
     } else {
@@ -67,7 +66,6 @@ export class ProductsStoreService {
   }
 
   checkNewGoodsStatus(newGoods: IProduct[]): void {
-    console.log('new goods: ', newGoods)
     const newProducts = newGoods.map(p => ({
       ...p,
       isInCart: this.userGoodsStore.isInCart(p.id),
@@ -80,7 +78,7 @@ export class ProductsStoreService {
     this.products$$.next(products)
   }
 
-  setSubcategories(subcategories: ISecondaryCategory[]): void {
+  setSubcategories(subcategories: ISubCategory[]): void {
     this.subcategories$$.next(subcategories)
   }
 }

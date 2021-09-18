@@ -1,0 +1,23 @@
+.location{
+  &__wrapper{
+    position: relative;
+  }
+  &__list {
+    position: absolute;
+    top: 100%;
+    background-color: #fff;
+    padding: 16px 4px;
+    border-radius: 6px;
+    box-shadow: var(--dropdown-shadow);
+    z-index: 2;
+  }
+  &__list-item {
+    padding: 6px 16px;
+    cursor: pointer;
+    transition: .2s;
+    &:hover {
+      color: var(--accent-red);
+      background-color: var(--link-hover-bg);
+    }
+  }
+}

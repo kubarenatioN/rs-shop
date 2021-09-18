@@ -12,11 +12,13 @@ import { AuthService } from '../../services/auth/auth.service'
 export class ProfileDropdownComponent implements OnInit {
   private isActive$$ = new BehaviorSubject<boolean>(false)
 
-  private user$$ = new BehaviorSubject<IUserInfo | null>(null)
+  // private user$$ = new BehaviorSubject<IUserInfo | null>(null)
 
   isActive$ = this.isActive$$.asObservable()
 
-  user$ = this.user$$.asObservable()
+  // user$ = this.user$$.asObservable()
+
+  user: IUserInfo | null = null
 
   constructor(
     private modalsController: ModalsControllerService,
@@ -25,7 +27,8 @@ export class ProfileDropdownComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.user$.subscribe(userInfo => {
-      this.user$$.next(userInfo)
+      // this.user$$.next(userInfo)
+      this.user = userInfo
     })
   }
 

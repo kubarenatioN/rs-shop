@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
-import { delay } from 'rxjs/operators'
-import { IBaseCategory } from 'src/app/shared/models/base-category.model'
-import { IProduct } from 'src/app/shared/models/product.model'
+import { ICategory } from 'src/app/shared/models/category.model'
+import { ISubCategory } from 'src/app/shared/models/subcategory.model'
 import { CatalogHttpService } from './catalog-http.service'
 import { CatalogStoreService } from './catalog-store.service'
 
@@ -21,23 +20,28 @@ export class CatalogFacadeService {
   loadBaseCategories(): void {
     if (this.store.hasBaseCategories) return
     this.store.setIsLoading(true)
-    this.http
-      .getBaseCategories()
-      .pipe(delay(1000))
-      .subscribe(categories => {
-        this.store.setBaseCategories(categories)
-        this.store.setIsLoading(false)
-      })
+    this.http.getBaseCategories().subscribe(categories => {
+      this.store.setBaseCategories(categories)
+      this.store.setIsLoading(false)
+    })
   }
 
-  getSecondaryCategories(baseCategoryId: string): IProduct[] | null {
+  getCombinedCategories(): (ICategory | ISubCategory)[] {
+    let subcategories: ISubCategory[] = []
+    this.store.baseCategories.forEach(cat => {
+      subcategories = [...subcategories, ...cat.subCategories]
+    })
+    return [...this.store.baseCategories, ...subcategories]
+  }
+
+  getSubCategories(baseCategoryId: string): ISubCategory[] | null {
     const baseCategory = this.store.baseCategories.find(
       category => category.id === baseCategoryId
     )
     return baseCategory?.subCategories || null
   }
 
-  get baseCategories(): IBaseCategory[] {
+  get baseCategories(): ICategory[] {
     return this.store.baseCategories
   }
 }

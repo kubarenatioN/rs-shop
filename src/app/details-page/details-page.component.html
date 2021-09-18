@@ -26,19 +26,19 @@
         {{ product.price | currency: 'BYN':'symbol':'1.0-2':'ru' }}
       </span>
       <button 
-      class="to-cart-btn btn-accent"
+      class="btn-to-cart"
       *ngIf="!isInCart(product.id)"
       (click)="addToCart(product.id)">В корзину</button>
       <button 
-      class="to-cart-btn btn-accent"
+      class="btn-from-cart"
       *ngIf="isInCart(product.id)"
       (click)="removeFromCart(product.id)">Удалить из корзины</button>
       <button 
-      class="to-cart-btn "
+      class="btn-to-favorite "
       *ngIf="!isInFavorite(product.id)"
       (click)="addToFavorite(product.id)">В избранное</button>
       <button 
-      class="to-cart-btn "
+      class="btn-from-favorite "
       *ngIf="isInFavorite(product.id)"
       (click)="removeFromFavorite(product.id)">Удалить из избранного</button>
       <ul class="info__items-list">
@@ -49,7 +49,18 @@
       </ul>
     </div>
   </div>
-  <div class="details-description">
-    <p>{{ product.description }}</p>
+  <div >
   </div>
+  <mat-tab-group class="details-description">
+    <mat-tab label="Обзор">
+      <p class="tab-item">{{ product.description }}</p>
+    </mat-tab>
+    <mat-tab label="Отзывы">
+      <p class="tab-item">{{ product.description }}</p>
+      <p class="tab-item">{{ product.description }}</p>
+    </mat-tab>
+    <mat-tab label="Вопрос-ответ">
+      <p class="tab-item">{{ product.description }}</p>
+    </mat-tab>
+  </mat-tab-group>
 </div>

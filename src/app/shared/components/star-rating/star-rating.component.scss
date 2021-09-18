@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+}
+.star {
+  width: 20px;
+  height: 20px;
+  background-image: url('../../../../assets/icons/rating-star.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  &--fill {
+    background-image: url('../../../../assets/icons/rating-star-fill.svg');
+  }
+}

@@ -31,13 +31,17 @@ img {
 }
 .title {
   font-weight: 700;
-}
-.title,
-.descr {
+  font-size: 16px;
+  line-height: 1.1;
+  max-height: 2.2em;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 80%;
+}
+
+.descr {
+  margin: 10px 0;
+  line-height: 1.1;
+  max-height: 3.3em;
+  overflow: hidden;
 }
 
 .price {

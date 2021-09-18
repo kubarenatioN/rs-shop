@@ -1,19 +1,21 @@
 .container {
   display: flex;
-  margin-top: 40px;
+  padding: 40px 10px 60px;
 }
 
 .nav {
-  margin-right: 60px;
-  max-width: 180px;
-  width: 100%;
+  padding-right: 20px;
+  border-right: 1px solid #ccc;
   li > a {
-    display: inline-block;
-    padding: 6px 20px;
+    white-space: nowrap;
   }
 }
 
 .content {
   flex-grow: 1;
+  padding-left: 20px;
   min-height: 80vh;
+}
+.btn-logout{
+  width: 100%;
 }

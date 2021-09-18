@@ -2,31 +2,37 @@ import { Pipe, PipeTransform } from '@angular/core'
 import { IProduct } from 'src/app/shared/models/product.model'
 import { ProductsSortType } from '../models/products-sort.enum'
 import { ISortOptions } from '../models/sort-options.model'
+import { SortOrderType } from '../models/sort-order.type'
 
 @Pipe({
   name: 'sort'
 })
 export class SortPipe implements PipeTransform {
-  transform(value: IProduct[], options?: ISortOptions): IProduct[] {
-    if (options === undefined) {
+  transform(value: IProduct[], options: ISortOptions | null): IProduct[] {
+    if (options === null) {
       return value
     }
     const { type } = options
+    const { order } = options
     switch (type) {
       case ProductsSortType.Price:
-        return this.sortByPrice(value)
+        return value.sort((a, b) => this.sortByPrice(a.price, b.price, order))
       case ProductsSortType.Rating:
-        return this.sortByRating(value)
+        return value.sort((a, b) =>
+          this.sortByRating(a.rating, b.rating, order)
+        )
       default:
         return value
     }
   }
 
-  sortByPrice(value: IProduct[]): IProduct[] {
-    return value.sort((a, b) => a.price - b.price)
+  private sortByPrice(a: number, b: number, order: SortOrderType): number {
+    const res = a - b
+    return order === 1 ? -res : res
   }
 
-  sortByRating(value: IProduct[]): IProduct[] {
-    return value.sort((a, b) => a.rating - b.rating)
+  private sortByRating(a: number, b: number, order: SortOrderType): number {
+    const res = a - b
+    return order === 1 ? -res : res
   }
 }

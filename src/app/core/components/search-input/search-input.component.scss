@@ -1,0 +1,27 @@
+:host {
+  flex-grow: 1;
+}
+.search {
+  position: relative;
+  & input {
+    width: 100%;
+    min-height: 38px;
+    padding: 8px 15px;
+    border-radius: 19px;
+    background-color: #fff;
+    border: 1px solid #d5d7db;
+    outline: none;
+  }
+  & .results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: var(--dropdown-shadow);
+    z-index: 2;
+  }
+}

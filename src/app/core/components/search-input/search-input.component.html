@@ -1,0 +1,24 @@
+<div
+  appDropdown
+  (closeDropdown)="isActive = false"
+  class="search">
+    <input #input (input)="onSearch(input.value)" (focus)="onSearch(input.value)"/>
+    <ng-container *ngIf="{ categories: searchCategories$ | async, products: searchProducts$ | async } as items">
+      <div 
+      class="results"
+      *ngIf="isActive">
+        <ul>
+          <li *ngFor="let category of items.categories">
+            <a routerLink="/category{{category.categoryId ? '/'+category.categoryId : ''}}/{{category.id}}">
+              {{category.name}}
+            </a>
+          </li>
+        </ul>
+        <ul>
+          <li *ngFor="let product of items.products">
+            <app-search-result-product [product]="product"></app-search-result-product>            
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+  </div>

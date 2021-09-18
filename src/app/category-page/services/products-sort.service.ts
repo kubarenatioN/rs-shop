@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs'
-import { ProductsSortType } from '../models/products-sort.enum'
+import { Subject } from 'rxjs'
 import { ISortOptions } from '../models/sort-options.model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsSortService {
-  private sortOptions$$ = new BehaviorSubject<ISortOptions>({
-    type: ProductsSortType.None
-  })
+  private sortOptions$$ = new Subject<ISortOptions>()
 
   sortOptions$ = this.sortOptions$$.asObservable()
 

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { SwiperModule } from 'swiper/angular'
 import { ContactsComponent } from './components/contacts/contacts.component'
+import { StarRatingComponent } from './components/star-rating/star-rating.component'
+import { AmountCheckerDirective } from './directives/amount-checker.directive'
 import { DropdownDirective } from './directives/dropdown.directive'
 import { MaterialModule } from './material/material.module'
 import { LoginModalComponent } from './modals/components/login-modal/login-modal.component'
@@ -13,7 +15,9 @@ import { RegisterModalComponent } from './modals/components/register-modal/regis
     ContactsComponent,
     DropdownDirective,
     LoginModalComponent,
-    RegisterModalComponent
+    RegisterModalComponent,
+    StarRatingComponent,
+    AmountCheckerDirective
   ],
   imports: [CommonModule, SwiperModule, FormsModule, MaterialModule],
   exports: [
@@ -21,7 +25,9 @@ import { RegisterModalComponent } from './modals/components/register-modal/regis
     ContactsComponent,
     SwiperModule,
     DropdownDirective,
-    MaterialModule
+    MaterialModule,
+    StarRatingComponent,
+    AmountCheckerDirective
   ]
 })
 export class SharedModule {}

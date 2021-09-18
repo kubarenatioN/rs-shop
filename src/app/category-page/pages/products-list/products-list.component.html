@@ -1,6 +1,7 @@
 <div class="container">
   <app-sortbar class="sortbar"></app-sortbar>
-  <ul class="list" *ngIf="products$ | async as products">
+  <hr>
+  <ul class="list">
     <li class="col-25" *ngFor="let product of products | sort:sortOptions">
       <app-product-card 
       (addToCartEvent)="addItemToCart($event)" 
@@ -11,6 +12,12 @@
     </li>
   </ul>
   <button 
+  class="loadmore-btn btn-blue"
   [disabled]="isAllLoaded$ | async"
-  (click)="loadMoreProducts()">Загрузить еще</button>
+  (click)="loadMoreProducts()">
+    Загрузить еще
+    <span class="material-icons-outlined">
+      refresh
+    </span>
+  </button>
 </div>

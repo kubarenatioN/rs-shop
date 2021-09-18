@@ -1,6 +1,6 @@
 <div class="header-upper">
   <div class="container">
-    <button class="header-upper__location btn-reset">г. Брест</button>
+    <app-location-select></app-location-select>
     <app-contacts
       [isCollapsed]="true"
       class="contacts__dropdown"
@@ -16,18 +16,29 @@
       <img src="./assets/icons/logo.svg" alt="Logo" />
     </a>
     <button #catalogBtn (click)="toggleCatalogDropdown()" class="btn-rounded">
-      <div [class.open]="isCatalogActive$ | async" class="catalog-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="catalog-icon__circle"
+      [class.open]="isCatalogActive$ | async">
+        <div class="catalog-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
       <span>Каталог товаров</span>
     </button>
 
-    <input type="text" />
+    <app-search-input></app-search-input>
+
     <app-profile-dropdown class="profile__dropdown"></app-profile-dropdown>
-    <a routerLink="/user" class="btn-rounded btn-link">Корзина</a>
+    <a routerLink="/user" class="btn-rounded btn-link">
+      <span class="material-icons-outlined btn-icon">
+        shopping_cart
+      </span>
+      <span class="btn-text">
+        Корзина
+      </span>
+    </a>
     <app-catalog-dropdown
       #catalogDropdown
       class="catalog__dropdown"

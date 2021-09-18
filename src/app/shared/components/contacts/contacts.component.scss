@@ -9,10 +9,12 @@
   background-color: #fff;
   top: 100%;
   right: 0;
-  z-index: 2;
-  & a {
-    display: block;
-    padding: 4px 10px;
+  z-index: 3;
+  box-shadow: var(--dropdown-shadow);
+  &-link {
+    & img{
+      margin-right: 4px;
+    }
   }
 }
 .contacts__list {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { IBaseCategory } from 'src/app/shared/models/base-category.model'
-import { IProduct } from 'src/app/shared/models/product.model'
+import { ICategory } from 'src/app/shared/models/category.model'
+import { ISubCategory } from 'src/app/shared/models/subcategory.model'
 import { CatalogDropdownService } from '../../services/catalog-dropdown.service'
 import { CatalogFacadeService } from '../../services/catalog/catalog-facade.service'
 
@@ -14,11 +14,11 @@ export class CatalogDropdownComponent implements OnInit {
 
   isLoading$ = this.catalogFacade.isLoading$
 
-  baseCategories: IBaseCategory[] = []
+  baseCategories: ICategory[] = []
 
-  secondaryCategories: IProduct[] = []
+  subcategories: ISubCategory[] = []
 
-  currentBaseCategoryId = ''
+  currentBaseCategory?: ICategory
 
   constructor(
     private dropdownService: CatalogDropdownService,
@@ -30,7 +30,7 @@ export class CatalogDropdownComponent implements OnInit {
     this.catalogFacade.baseCategories$.subscribe(categories => {
       this.baseCategories = categories
       if (categories.length > 0) {
-        this.loadOtherCategories(this.baseCategories[0].id)
+        this.loadOtherCategories(this.baseCategories[0])
       }
     })
   }
@@ -43,9 +43,8 @@ export class CatalogDropdownComponent implements OnInit {
     this.dropdownService.close()
   }
 
-  loadOtherCategories(baseCategoryId: string): void {
-    this.secondaryCategories =
-      this.catalogFacade.getSecondaryCategories(baseCategoryId) || []
-    this.currentBaseCategoryId = baseCategoryId
+  loadOtherCategories(category: ICategory): void {
+    this.subcategories = this.catalogFacade.getSubCategories(category.id) || []
+    this.currentBaseCategory = category
   }
 }

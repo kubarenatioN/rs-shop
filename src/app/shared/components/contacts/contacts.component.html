@@ -13,11 +13,45 @@
       <span class="material-icons">arrow_drop_down</span>
     </button>
     <ul class="contacts__dropdown" *ngIf="isVisible">
-      <li>
-        <a href="tel:375293021021">+375 29 302 10 21</a>
+      <li >
+        <a
+        class="contacts__dropdown-link list-item"
+        href="tel:375293021021">
+          <img src="./assets/icons/life.svg" alt="Life logo">
+          <span>
+            +375 29 302 10 21
+          </span>
+        </a>
       </li>
-      <li>
-        <a>Telegram</a>
+      <li >
+        <a
+        class="contacts__dropdown-link list-item"
+        href="tel:375293021021">
+          <img src="./assets/icons/phone.svg" alt="Phone">
+          <span>
+            +375 29 302 10 21
+          </span>
+        </a>
+      </li>
+      <li >
+        <a
+        class="contacts__dropdown-link list-item"
+        href="http://t.me/e21vekbot">
+          <img src="./assets/icons/telegram.svg" alt="Telegram logo">
+          <span>
+            Telegram
+          </span>
+        </a>
+      </li>
+      <li >
+        <a 
+        class="contacts__dropdown-link list-item"
+        href="mailto:mail21vek@gmail.com">
+          <img src="./assets/icons/mail.svg" alt="Mail">
+          <span>
+            Почта
+          </span>
+        </a>
       </li>
     </ul>
   </div>
@@ -25,11 +59,57 @@
 
 <ng-template #expanded>
   <ul class="contacts__list">
-    <li>
-      <a href="tel:375293021021">+375 29 302 10 21</a>
+    <li >
+      <a class="list-item" href="https://viber.com" target="blank">
+        <img src="./assets/icons/viber-logo.svg" alt="Viber Logo" />
+        <span>Viber</span>
+      </a>
     </li>
-    <li>
-      <a>Telegram</a>
+    <li >
+      <a class="list-item" href="tel:375293021021">
+        <img src="./assets/icons/a1-logo.svg" alt="A1 Logo" />
+        <span>+375 29 302 10 21</span>
+      </a>
+    </li>
+    <li >
+      <a 
+      class="contacts__dropdown-link list-item"
+      href="tel:375293021021">
+        <img src="./assets/icons/life.svg" alt="Life logo">
+        <span>
+          +375 29 302 10 21
+        </span>
+      </a>
+    </li>
+    <li >
+      <a
+      class="contacts__dropdown-link list-item"
+      href="tel:375293021021">
+        <img src="./assets/icons/phone.svg" alt="Phone">
+        <span>
+          +375 29 302 10 21
+        </span>
+      </a>
+    </li>
+    <li >
+      <a
+      class="contacts__dropdown-link list-item"
+      href="http://t.me/e21vekbot">
+        <img src="./assets/icons/telegram.svg" alt="Telegram logo">
+        <span>
+          Telegram
+        </span>
+      </a>
+    </li>
+    <li >
+      <a
+      class="contacts__dropdown-link list-item"
+      href="mailto:mail21vek@gmail.com">
+        <img src="./assets/icons/mail.svg" alt="Mail">
+        <span>
+          Почта
+        </span>
+      </a>
     </li>
   </ul>
 </ng-template>

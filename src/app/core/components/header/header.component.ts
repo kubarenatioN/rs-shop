@@ -2,15 +2,12 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnInit,
   Renderer2,
   ViewChild
 } from '@angular/core'
-import { Observable } from 'rxjs'
-import { ICategory } from 'src/app/shared/models/category.model'
 import SwiperCore, { FreeMode } from 'swiper'
 import { CatalogDropdownService } from '../../services/catalog-dropdown.service'
-import { HeaderHttpService } from '../../services/header-http.service'
+import { CatalogFacadeService } from '../../services/catalog/catalog-facade.service'
 
 SwiperCore.use([FreeMode])
 
@@ -19,10 +16,10 @@ SwiperCore.use([FreeMode])
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements AfterViewInit {
   isCatalogActive$ = this.catalogService.isActive$
 
-  categories$?: Observable<ICategory[]>
+  categories$ = this.catalogFacade.baseCategories$
 
   @ViewChild('catalogBtn') catalogBtn!: ElementRef
 
@@ -32,14 +29,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   dropdown!: ElementRef
 
   constructor(
-    private httpService: HeaderHttpService,
     private catalogService: CatalogDropdownService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private catalogFacade: CatalogFacadeService
   ) {}
-
-  ngOnInit(): void {
-    this.categories$ = this.httpService.getCategories()
-  }
 
   ngAfterViewInit(): void {
     this.renderer.listen('window', 'click', (event: PointerEvent) => {
