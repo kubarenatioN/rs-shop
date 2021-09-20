@@ -1,4 +1,21 @@
 <div *ngIf="product$ | async as product" class="container">
+  <ul class="breadcrumbs" *ngIf="breadcrumbs && breadcrumbs.category && breadcrumbs.subcategory">
+    <li>
+      <a [routerLink]="['/category', breadcrumbs.category.id]">
+        {{breadcrumbs.category.name}}
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/category', breadcrumbs.category.id, breadcrumbs.subcategory.id]">
+        {{breadcrumbs.subcategory.name}}
+      </a>
+    </li>
+    <li>
+      <span>
+        {{product.name}}
+      </span>
+    </li>
+  </ul>
   <h3 class="title">{{ product.name }}</h3>
   <div class="details-main">
     <div class="details-main__slider-container">

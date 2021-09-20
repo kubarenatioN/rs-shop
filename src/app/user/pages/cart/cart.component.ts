@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { UserGoodsFacadeService } from 'src/app/core/services/user-goods/user-goods-facade.service'
 import {
   IOrder,
@@ -14,10 +15,6 @@ import { OrdersFacadeService } from '../../services/orders/orders-facade.service
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  // private isOrderFormActive$$ = new BehaviorSubject<boolean>(false)
-
-  // isOrderFormActive$ = this.isOrderFormActive$$.asObservable()
-
   isOrderFormActive = false
 
   headingTitle = 'Корзина'
@@ -30,17 +27,20 @@ export class CartComponent implements OnInit {
 
   orderItems: IOrderItem[] = []
 
+  summaryPrice = 0
+
   constructor(
     private userGoodsFacade: UserGoodsFacadeService,
-    private ordersFacade: OrdersFacadeService
+    private ordersFacade: OrdersFacadeService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.userGoodsFacade.cartProducts$.subscribe(p => {
       this.products = p
       this.size = p.length
-      console.log('refresh?', this.products)
       this.updateCartItems()
+      this.countSummaryPrice()
     })
   }
 
@@ -52,7 +52,7 @@ export class CartComponent implements OnInit {
       const ind = this.orderItems.findIndex(it => it.id === item.id)
       this.orderItems[ind].amount = item.amount
     }
-    console.log('item changed:', this.orderItems)
+    this.countSummaryPrice()
   }
 
   updateCartItems(): void {
@@ -62,7 +62,6 @@ export class CartComponent implements OnInit {
     this.orderItemsIds = this.orderItemsIds.filter(id =>
       this.products.map(p => p.id).includes(id)
     )
-    console.log(this.orderItems, this.orderItemsIds)
   }
 
   checkAmounts(): boolean {
@@ -73,12 +72,10 @@ export class CartComponent implements OnInit {
   }
 
   makeOrder(): void {
-    // this.isOrderFormActive$$.next(true)
     this.isOrderFormActive = true
   }
 
   cancelOrder(): void {
-    // this.isOrderFormActive$$.next(false)
     this.isOrderFormActive = false
   }
 
@@ -88,9 +85,21 @@ export class CartComponent implements OnInit {
       details
     }
     this.ordersFacade.makeOrder(order)
+    this.snackBar.open('Ваш заказ был успешно создан', 'OK', {
+      duration: 3000
+    })
   }
 
   getItemAmount(id: string): number {
     return this.orderItems.find(it => it.id === id)?.amount ?? 0
+  }
+
+  countSummaryPrice(): void {
+    this.summaryPrice = this.orderItems.reduce(
+      (acc, item) =>
+        acc +
+        (this.products.find(p => p.id === item.id)?.price || 0) * item.amount,
+      0
+    )
   }
 }

@@ -61,10 +61,22 @@
   margin: 0;
 }
 
+.btn-rounded {
+  min-height: 42px;
+  border-radius: 21px;
+}
+
+.catalog-btn {
+  padding: 7px 12px;
+  &:hover {
+    color: var(--accent-red);
+  }
+}
+
 // Icon Animation
 .catalog-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   position: relative;
   transform: rotate(0deg);
   transition: 0.5s ease-in-out;
@@ -77,6 +89,9 @@
     transition: .2s;
     &.open {
       background-color: transparent;
+    }
+    &.open + span {
+      color: var(--accent-red);
     }
   }
 }
@@ -97,21 +112,21 @@
   background: var(--accent-red);
 }
 .catalog-icon span:nth-child(1) {
-  top: 3px;
+  top: 2px;
 }
 
 .catalog-icon span:nth-child(2),
 .catalog-icon span:nth-child(3) {
-  top: 9px;
+  top: 8px;
 }
 
 .catalog-icon span:nth-child(4) {
-  top: 15px;
+  top: 14px;
 }
 
 .catalog-icon__circle.open {
   .catalog-icon span:nth-child(1) {
-    top: 9px;
+    top: 8px;
     width: 0%;
     left: 50%;
   }

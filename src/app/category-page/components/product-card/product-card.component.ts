@@ -9,6 +9,8 @@ import { IProduct } from 'src/app/shared/models/product.model'
 export class ProductCardComponent {
   @Input() product!: IProduct
 
+  @Input() breadcrumbs?: { category: string; subcategory: string }
+
   @Output()
   private addToCartEvent = new EventEmitter<string>()
 

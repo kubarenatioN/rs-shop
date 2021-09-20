@@ -5,6 +5,26 @@
   font-size: 32px;
   padding: 20px 10px;
 }
+.breadcrumbs{
+  display: flex;
+  padding-left: 10px;
+  & li + li {
+    padding-left: 30px;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      background-image: url('../../assets/icons/breadcrumb-arrow.svg');
+      background-size: contain;
+      width: 20px;
+      height: 20px;
+    }
+  }
+  & span {
+    cursor: default;
+  }
+}
 .details-main {
   display: flex;
   justify-content: center;

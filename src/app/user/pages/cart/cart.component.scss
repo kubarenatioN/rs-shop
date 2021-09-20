@@ -1,15 +1,32 @@
 .heading {
   display: flex;
+  background-color: #efefef;
+  padding: 6px 0;
+  border-bottom: 1px solid #ccc;
+}
+.image {
+  flex: 160px;
+  padding-left: 10px;
 }
 .product {
-  width: calc(200px + 20%);
+  flex: 20%;
 }
 .amount {
-  width: 100px;
+  flex: 140px;
 }
 .delivery {
-  width: 200px;
+  flex: 160px;
 }
 .price {
-  width: 100px;
+  flex: 100px;
 }
+
+.summary-price {
+  text-align: right;
+  padding: 10px 0;
+  & span {
+    font-size: 18px;
+    font-weight: 700;
+    padding-right: 10px;
+  }
+} 

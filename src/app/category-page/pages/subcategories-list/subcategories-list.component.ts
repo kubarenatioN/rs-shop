@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs'
-import { ProductsFacadeService } from '../../services/products/products-facade.service'
+import { CatalogFacadeService } from 'src/app/core/services/catalog/catalog-facade.service'
+import { ISubCategory } from 'src/app/shared/models/subcategory.model'
 
 @Component({
   selector: 'app-subcategories-list',
@@ -11,19 +12,22 @@ import { ProductsFacadeService } from '../../services/products/products-facade.s
 export class SubcategoriesListComponent implements OnInit, OnDestroy {
   private routeSubscription!: Subscription
 
-  category: string = ''
+  categoryId: string = ''
 
-  subcategories$ = this.productsFacade.subcategories$
+  category?: ISubCategory
+
+  subcategories: ISubCategory[] = []
 
   constructor(
     private route: ActivatedRoute,
-    private productsFacade: ProductsFacadeService
+    private catalogFacade: CatalogFacadeService
   ) {}
 
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe(route => {
-      this.category = route.category
-      this.productsFacade.getSubcategories(this.category)
+      this.categoryId = route.category
+      this.category = this.catalogFacade.getCategory(this.categoryId)
+      this.subcategories = this.catalogFacade.getSubCategories(this.categoryId)
     })
   }
 

@@ -21,6 +21,10 @@ export class SortPipe implements PipeTransform {
         return value.sort((a, b) =>
           this.sortByRating(a.rating, b.rating, order)
         )
+      case ProductsSortType.Amount:
+        return value.sort((a, b) =>
+          this.sortByRating(a.availableAmount, b.availableAmount, order)
+        )
       default:
         return value
     }
@@ -32,6 +36,11 @@ export class SortPipe implements PipeTransform {
   }
 
   private sortByRating(a: number, b: number, order: SortOrderType): number {
+    const res = a - b
+    return order === 1 ? -res : res
+  }
+
+  private sortByAmount(a: number, b: number, order: SortOrderType): number {
     const res = a - b
     return order === 1 ? -res : res
   }

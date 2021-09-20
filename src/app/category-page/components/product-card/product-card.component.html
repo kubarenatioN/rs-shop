@@ -1,4 +1,7 @@
-<a class="details-link" [routerLink]="['/details', product.id]">
+<a class="details-link" 
+[routerLink]="['/details', product.id]" 
+[queryParams]="{category: breadcrumbs?.category, subcategory: breadcrumbs?.subcategory}"
+[class.product--popular]="product.rating === 5">
   <img class="image" [src]="product.imageUrls[0] || ''" [alt]="product.name" />
   <p class="name">
     {{ product.name }}

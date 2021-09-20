@@ -34,14 +34,18 @@ export class CatalogFacadeService {
     return [...this.store.baseCategories, ...subcategories]
   }
 
-  getSubCategories(baseCategoryId: string): ISubCategory[] | null {
+  getSubCategories(baseCategoryId: string): ISubCategory[] {
     const baseCategory = this.store.baseCategories.find(
       category => category.id === baseCategoryId
     )
-    return baseCategory?.subCategories || null
+    return baseCategory?.subCategories || []
   }
 
   get baseCategories(): ICategory[] {
     return this.store.baseCategories
+  }
+
+  getCategory(id: string): ICategory | undefined {
+    return this.store.baseCategories.find(cat => cat.id === id)
   }
 }

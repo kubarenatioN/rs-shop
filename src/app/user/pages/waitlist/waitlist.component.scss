@@ -2,20 +2,50 @@
   width: 100%;
 }
 
+.order-heading {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+  &__btn {
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid var(--accent-red);
+    background-color: transparent;
+    margin-left: 10px;
+    transition: .3s;
+    & span {
+      color: var(--accent-red);
+      display: block;
+      transition: .3s;
+    }
+    &:hover {
+      background-color: var(--accent-red);
+    }
+    &:hover span {
+      color: #fff;
+    }
+  }
+}
+
 .heading {
   display: flex;
+  padding: 10px 0;
+  background-color: #efefef;
+  border-bottom: 1px solid #ccc;
 }
 .product {
-  width: calc(200px + 20%);
+  flex: 40%;
+  padding-left: 10px;
 }
 .amount {
-  width: 100px;
+  flex: 100px;
 }
 .delivery {
-  width: 200px;
+  flex: 180px;
 }
 .price {
-  width: 100px;
+  flex: 120px;
 }
 
 .order-details {
@@ -27,5 +57,15 @@
   & td, th {
     padding: 6px 10px;
     border: 1px solid #ccc;
+  }
+}
+
+.summary-price{
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+  & span {
+    font-weight: 700;
+    font-size: 16px;
   }
 }

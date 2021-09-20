@@ -19,9 +19,9 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   private productsSubscription!: Subscription
 
-  private category: string = ''
+  category: string = ''
 
-  private subcategory: string = ''
+  subcategory: string = ''
 
   private pageNumber = 0
 

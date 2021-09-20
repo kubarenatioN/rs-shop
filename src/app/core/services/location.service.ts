@@ -16,7 +16,7 @@ export class LocationService {
 
   location$ = this.location$$.asObservable()
 
-  locationsList = ['Брест', 'Гомель', 'Могилев']
+  locationsList = ['Брест', 'Витебск', 'Гомель', 'Гродно', 'Могилев', 'Минск']
 
   constructor(private http: HttpClient) {}
 

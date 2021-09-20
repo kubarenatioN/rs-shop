@@ -1,6 +1,9 @@
+<ng-container *ngIf="products.length > 0; else noProducts">
   <div class="heading">
-    <span class="product">
+    <span class="image">
       Товар
+    </span>
+    <span class="product">
     </span>
     <span class="amount">
       Количество
@@ -21,7 +24,14 @@
     </li>
   </ul>
   <hr>
+  <div class="summary-price">
+    <span>
+      {{summaryPrice | currency:"BYN":"symbol":"1.0-2":"ru" }}
+    </span>
+  </div>
   <button 
+  *ngIf="!isOrderFormActive"
+  class="btn-blue"
   [disabled]="!checkAmounts() || isOrderFormActive"
   (click)="makeOrder()">Оформить заказ</button>
 
@@ -30,3 +40,9 @@
   [canSubmit]="checkAmounts()"
   (cancelOrderEvent)="cancelOrder()"
   (submitOrderEvent)="submitOrder($event)"></app-order-form>
+
+</ng-container>
+
+<ng-template #noProducts>
+  <p>Корзина пуста</p>
+</ng-template>

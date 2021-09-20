@@ -1,9 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router'
 import SwiperCore, { Swiper, Thumbs } from 'swiper'
 import { SwiperComponent } from 'swiper/angular'
+import { CatalogFacadeService } from '../core/services/catalog/catalog-facade.service'
 import { UserGoodsFacadeService } from '../core/services/user-goods/user-goods-facade.service'
+import { ICategory } from '../shared/models/category.model'
 import { IProduct } from '../shared/models/product.model'
+import { ISubCategory } from '../shared/models/subcategory.model'
 import { ProductDetailsFacadeService } from './services/details/product-details-facade.service'
 
 SwiperCore.use([Thumbs])
@@ -16,58 +19,31 @@ SwiperCore.use([Thumbs])
 export class DetailsPageComponent implements OnInit, AfterViewInit {
   product?: IProduct
 
-  product$ = this.facade.product$
+  breadcrumbs?: { category?: ICategory; subcategory?: ISubCategory }
 
-  // detailsSwiper!: Swiper
+  product$ = this.facade.product$
 
   detailsSwiperThumbs!: Swiper
 
   @ViewChild('detailsSwiper', { static: false })
   detailsSwiper!: SwiperComponent
 
-  // @ViewChild('detailsSwiperThumbs', { static: false })
-  // detailsSwiperThumbs!: SwiperComponent
-
-  // detailsSwiperConfig: any = {
-  //   slidesPerView: 1,
-  //   spaceBetween: 10
-  // }
-
   constructor(
     private route: ActivatedRoute,
     private facade: ProductDetailsFacadeService,
-    private userGoodsFacade: UserGoodsFacadeService
+    private userGoodsFacade: UserGoodsFacadeService,
+    private catalogFacade: CatalogFacadeService
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!
     this.facade.getProduct(id)
-    this.product$.subscribe(p => {
-      // this.product = p
-      console.log(p)
-    })
-
-    // this.detailsSwiperThumbs = new Swiper('.details-main__thumbs-slider', {
-    //   spaceBetween: 20,
-    //   slidesPerView: 3
-    // })
-
-    // this.detailsSwiper = new Swiper('.details-main__slider', {
-    //   spaceBetween: 10,
-    //   slidesPerView: 1,
-    //   thumbs: {
-    //     swiper: this.detailsSwiperThumbs
-    //   }
-    // })
-    // this.detailsSwiperThumbs.controller.control = this.detailsSwiper
+    this.getBreadcrumbs(this.route.snapshot)
   }
 
   ngAfterViewInit(): void {
-    console.log(this.detailsSwiper)
-    // console.log(this.detailsSwiper.swiperRef)
-    // this.detailsSwiperConfig.thumbs = {
-    //   swiper: this.detailsSwiperThumbs.s_swiper
-    // }
+    console.log('after view init')
+    // console.log(this.detailsSwiper)
   }
 
   isInCart(id: string): boolean {
@@ -92,5 +68,18 @@ export class DetailsPageComponent implements OnInit, AfterViewInit {
 
   removeFromFavorite(id: string): void {
     this.userGoodsFacade.removeFromFavorite(id)
+  }
+
+  getBreadcrumbs(snapshot: ActivatedRouteSnapshot): void {
+    const categoryId = snapshot.queryParamMap.get('category') ?? ''
+    const subcategoryId = snapshot.queryParamMap.get('subcategory')
+    const category = this.catalogFacade.getCategory(categoryId)
+    const subcategory = category?.subCategories.find(
+      subcat => subcat.id === subcategoryId
+    )
+    this.breadcrumbs = {
+      category,
+      subcategory
+    }
   }
 }

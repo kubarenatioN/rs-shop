@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-import { Observable, Subscription } from 'rxjs'
+import { Component, Input } from '@angular/core'
 import SwiperCore, { Navigation } from 'swiper'
 import { IMainPageSlide } from '../../models/main-slide.model'
-import { MainPageHttpService } from '../../services/main-page-http.service'
 
 SwiperCore.use([Navigation])
 
@@ -11,16 +9,6 @@ SwiperCore.use([Navigation])
   templateUrl: './main-slider.component.html',
   styleUrls: ['./main-slider.component.scss']
 })
-export class MainSliderComponent implements OnInit {
-  slidesSubscription!: Subscription
-
-  slides$?: Observable<IMainPageSlide[]>
-
-  slides: IMainPageSlide[] = []
-
-  constructor(private httpService: MainPageHttpService) {}
-
-  ngOnInit(): void {
-    this.slides$ = this.httpService.getMainSlideData()
-  }
+export class MainSliderComponent {
+  @Input() slides: IMainPageSlide[] = []
 }

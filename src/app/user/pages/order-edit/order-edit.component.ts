@@ -16,6 +16,8 @@ import { OrdersFacadeService } from '../../services/orders/orders-facade.service
 export class OrderEditComponent implements OnInit {
   products: IProduct[] = []
 
+  headingTitle = 'Редактирование заказа'
+
   size = 0
 
   order: IOrder | null = null
@@ -23,6 +25,8 @@ export class OrderEditComponent implements OnInit {
   orderItemsIds: string[] = []
 
   orderItems: IOrderItem[] = []
+
+  summaryPrice = 0
 
   constructor(
     private ordersFacade: OrdersFacadeService,
@@ -39,6 +43,7 @@ export class OrderEditComponent implements OnInit {
     this.ordersFacade.orderProducts$.subscribe(products => {
       this.products = products
       this.size = products.length
+      this.countSummaryPrice()
     })
     this.orderItems = this.order?.items ?? []
     this.orderItemsIds = this.order?.items.map(it => it.id) ?? []
@@ -52,13 +57,23 @@ export class OrderEditComponent implements OnInit {
       const ind = this.orderItems.findIndex(it => it.id === item.id)
       this.orderItems[ind].amount = item.amount
     }
+    this.countSummaryPrice()
+  }
+
+  updateOrderItems(): void {
+    this.orderItems = this.orderItems.filter(it =>
+      this.products.map(p => p.id).includes(it.id)
+    )
+    this.orderItemsIds = this.orderItemsIds.filter(id =>
+      this.products.map(p => p.id).includes(id)
+    )
+    this.countSummaryPrice()
   }
 
   checkAmounts(): boolean {
     const isEnabled =
       this.orderItems.every(it => it.amount > 0) &&
       this.orderItems.length === this.size
-    // console.log(isEnabled)
     return isEnabled
   }
 
@@ -67,7 +82,6 @@ export class OrderEditComponent implements OnInit {
   }
 
   submitEditOrder(newOrderDetails: IOrderDetails): void {
-    // console.log('new order: ', newOrderDetails, this.orderItems, this.order?.id)
     const newOrder: IOrder = {
       id: this.order?.id,
       items: this.orderItems,
@@ -77,12 +91,22 @@ export class OrderEditComponent implements OnInit {
   }
 
   removeItemFromList(id: string): void {
-    this.orderItemsIds = this.orderItemsIds.filter(it => it !== id)
-    this.orderItems = this.orderItems.filter(it => it.id !== id)
+    this.products = this.products.filter(p => p.id !== id)
+    this.size = this.products.length
+    this.updateOrderItems()
   }
 
   getProductAmount(id: string): number {
     const product = this.order?.items.find(it => it.id === id)
     return product?.amount ?? 0
+  }
+
+  countSummaryPrice(): void {
+    this.summaryPrice = this.orderItems.reduce(
+      (acc, item) =>
+        acc +
+        (this.products.find(p => p.id === item.id)?.price || 0) * item.amount,
+      0
+    )
   }
 }

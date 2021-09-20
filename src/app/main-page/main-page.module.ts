@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http'
+import { NgModule } from '@angular/core'
 import { SharedModule } from '../shared/shared.module'
-import { MainComponent } from './pages/main/main.component'
-import { PopularGoodsComponent } from './components/popular-goods/popular-goods.component'
 import { MainSliderComponent } from './components/main-slider/main-slider.component'
-import { MainPageRoutingModule } from './main-page-routing.module'
+import { OfferItemComponent } from './components/offer-item/offer-item.component'
+import { PopularGoodsComponent } from './components/popular-goods/popular-goods.component'
 import { PopularProductCardComponent } from './components/popular-product-card/popular-product-card.component'
+import { MainPageRoutingModule } from './main-page-routing.module'
+import { MainComponent } from './pages/main/main.component'
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { PopularProductCardComponent } from './components/popular-product-card/p
     MainComponent,
     PopularGoodsComponent,
     MainSliderComponent,
-    PopularProductCardComponent
+    PopularProductCardComponent,
+    OfferItemComponent
   ],
   imports: [SharedModule, HttpClientModule, MainPageRoutingModule],
   exports: [MainComponent, MainSliderComponent]

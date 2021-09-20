@@ -13,3 +13,10 @@ class="btn-sort btn-reset"
   active: options.type === sortType.Rating,
   desc: options.order === -1 && options.type === sortType.Rating
 }">популярности</button>
+<button 
+(click)="onSort(sortType.Amount)"
+class="btn-sort btn-reset"
+[ngClass]="{
+  active: options.type === sortType.Amount,
+  desc: options.order === -1 && options.type === sortType.Amount
+}">количеству</button>

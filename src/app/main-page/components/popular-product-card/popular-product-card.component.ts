@@ -8,4 +8,6 @@ import { IProduct } from 'src/app/shared/models/product.model'
 })
 export class PopularProductCardComponent {
   @Input() product!: IProduct
+
+  @Input() breadcrumbs?: { category: string; subcategory: string }
 }

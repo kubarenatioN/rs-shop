@@ -8,7 +8,8 @@
       (removeFromCartEvent)="removeItemFromCart($event)" 
       (addToFavoriteEvent)="addItemToFavorite($event)"
       (removeFromFavoriteEvent)="removeItemFromFavorite($event)"
-      [product]="product"></app-product-card>
+      [product]="product"
+      [breadcrumbs]="{category, subcategory}"></app-product-card>
     </li>
   </ul>
   <button 

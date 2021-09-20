@@ -10,12 +10,16 @@
     </mat-expansion-panel-header>
     <div class="order-info">
       <div class="order-heading">
-        <button (click)="deleteItem(order.id!)">
+        <button 
+        class="order-heading__btn"
+        (click)="deleteItem(order.id!)">
           <span class="material-icons-outlined">
             delete
           </span>
         </button>
-        <a [routerLink]="['/user/edit-order', order.id]">
+        <a 
+        class="order-heading__btn"
+        [routerLink]="['/user/edit-order', order.id]">
           <span class="material-icons-outlined">
             edit
           </span>
@@ -35,11 +39,18 @@
           Стоимость
         </span>
       </div>
-      <ul class="order-items">
-        <li *ngFor="let item of products$ | async">
-          <app-order-item [product]="item" [amount]="getAmount(order, item.id)"></app-order-item>
-        </li>
-      </ul>
+      <ng-container *ngIf="products$ | async as products">
+        <ul class="order-items">
+          <li *ngFor="let item of products">
+            <app-order-item [product]="item" [amount]="getAmount(order, item.id)"></app-order-item>
+          </li>
+        </ul>
+        <div class="summary-price">
+          <span>
+            К оплате: {{getSummaryPrice(products, order) | currency: "BYN":"symbol":"1.0-2":"ru"}}
+          </span>
+        </div>
+      </ng-container>
       <div class="order-details">
         <h4>Детали заказа:</h4>
         <table class="order-details__table">

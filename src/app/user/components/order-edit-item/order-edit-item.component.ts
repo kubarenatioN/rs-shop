@@ -5,7 +5,6 @@ import {
   Input,
   Output
 } from '@angular/core'
-import { UserGoodsFacadeService } from 'src/app/core/services/user-goods/user-goods-facade.service'
 import { IOrderItem } from 'src/app/shared/models/order-item.model'
 import { IProduct } from 'src/app/shared/models/product.model'
 
@@ -24,8 +23,6 @@ export class OrderEditItemComponent implements AfterContentInit {
   @Output() itemChanged = new EventEmitter<IOrderItem>()
 
   @Output() removeFromListEvent = new EventEmitter<string>()
-
-  constructor(private userGoodsFacade: UserGoodsFacadeService) {}
 
   ngAfterContentInit(): void {
     this.price = this.product.price * this.amount

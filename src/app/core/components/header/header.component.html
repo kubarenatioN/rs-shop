@@ -15,7 +15,7 @@
     <a routerLink="" class="logo">
       <img src="./assets/icons/logo.svg" alt="Logo" />
     </a>
-    <button #catalogBtn (click)="toggleCatalogDropdown()" class="btn-rounded">
+    <button #catalogBtn (click)="toggleCatalogDropdown()" class="btn-rounded catalog-btn">
       <div class="catalog-icon__circle"
       [class.open]="isCatalogActive$ | async">
         <div class="catalog-icon">

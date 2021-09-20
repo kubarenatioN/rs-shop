@@ -1,0 +1,14 @@
+.slider__container {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+.offers__container{
+  padding-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  & li {
+    width: 50%;
+    height: 200px;
+  }
+}

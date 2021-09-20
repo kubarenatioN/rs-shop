@@ -1,22 +1,36 @@
 .cart-item {
   display: flex;
+  margin-top: 20px;
+}
+.product__wrapper {
+  display: flex;
+  flex: 40%;
 }
 .image {
-  width: 180px;
-  height: 120px;
+  padding-right: 20px;
+  width: 140px;
+  height: 100px;
   object-fit: contain;
 }
-.name__wrapper {
-  width: 20%;
-  margin-left: 20px;
-}
 .counter {
-  width: 100px;
+  flex: 100px;
 }
 .delivery {
-  width: 200px;
+  flex: 180px;
+}
+.price {
+  flex: 120px;
 }
 
-.price {
-  min-width: 100px;
+.name {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.1;
+  height: 2.2em;
+  overflow: hidden;
+}
+
+.amount {
+  display: block;
+  margin-top: 10px;
 }

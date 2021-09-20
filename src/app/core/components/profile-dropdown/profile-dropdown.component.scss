@@ -19,6 +19,13 @@
   }
 }
 
+.toggle-btn {
+  min-height: 42px;
+  border-radius: 21px;
+  &:hover {
+    color: var(--accent-red);
+  }
+}
 .toggle-btn.active {
   transition: .2s color;
   color: var(--accent-red);

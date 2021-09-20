@@ -1,21 +1,21 @@
 <div class="cart-item">
-  <div class="image__wrapper">
+  <div class="product__wrapper">
     <a [routerLink]="['/details', product.id]">
       <img 
         class="image" 
         [src]="product.imageUrls[0]" 
         [alt]="product.name">
     </a>
-  </div>
-  <div class="name__wrapper">
-    <h6 class="name">
+    <div class="name__wrapper">
       <a [routerLink]="['/details', product.id]">
-        {{product.name}}
+        <h6 class="name">
+          {{product.name}}
+        </h6>
       </a>
-    </h6>
-    <span>
-      Кол-во на складе: {{product.availableAmount}}
-    </span>
+      <span class="amount">
+        На складе: {{product.availableAmount}}
+      </span>
+    </div>
   </div>
   <div class="counter">
     <span>{{amount}}</span>

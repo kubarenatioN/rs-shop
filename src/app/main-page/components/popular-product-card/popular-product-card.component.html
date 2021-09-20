@@ -1,4 +1,7 @@
-<a [routerLink]="['details', product.id]">
+<a 
+[routerLink]="['details', product.id]" 
+[queryParams]="{category: breadcrumbs?.category, subcategory: breadcrumbs?.subcategory}"
+[class.product--popular]="product.rating === 5">
   <img [src]="product.imageUrls[0]" [alt]="product.name" />
   <div class="info">
     <p class="title">

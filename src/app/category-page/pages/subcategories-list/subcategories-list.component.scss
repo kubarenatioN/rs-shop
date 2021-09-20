@@ -1,0 +1,32 @@
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-bottom: 40px;
+}
+
+li {
+  max-width: 24%;
+  width: 100%;
+  border: 1px solid #ccc;
+  box-shadow: var(--card-hover-shadow);
+  margin-top: 20px;
+}
+
+a {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: .2s;
+  &:hover {
+    color: var(--accent-red);
+    background-color: var(--link-hover-bg);
+  }
+}
+
+h2 {
+  font-size: 24px;
+  padding: 40px 0 10px;
+}

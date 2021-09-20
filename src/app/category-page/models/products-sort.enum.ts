@@ -1,5 +1,6 @@
 export enum ProductsSortType {
   None,
   Price,
-  Rating
+  Rating,
+  Amount
 }
