@@ -1,8 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
 import { Subscription } from 'rxjs'
+import { CatalogFacadeService } from 'src/app/core/services/catalog/catalog-facade.service'
 import { UserGoodsFacadeService } from 'src/app/core/services/user-goods/user-goods-facade.service'
+import { ICategory } from 'src/app/shared/models/category.model'
 import { IProduct } from 'src/app/shared/models/product.model'
+import { ISubCategory } from 'src/app/shared/models/subcategory.model'
 import { ISortOptions } from '../../models/sort-options.model'
 import { ProductsSortService } from '../../services/products-sort.service'
 import { ProductsFacadeService } from '../../services/products/products-facade.service'
@@ -19,15 +22,15 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   private productsSubscription!: Subscription
 
-  category: string = ''
+  breadcrumbs?: { category?: ICategory; subcategory?: ISubCategory }
 
-  subcategory: string = ''
+  category?: ICategory
+
+  subcategory?: ISubCategory
 
   private pageNumber = 0
 
   products: IProduct[] = []
-
-  // products$ = this.productsFacade.products$
 
   isAllLoaded$ = this.productsFacade.isAllLoaded$
 
@@ -37,7 +40,8 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private productsFacade: ProductsFacadeService,
     private sortService: ProductsSortService,
-    private userGoodsFacade: UserGoodsFacadeService
+    private userGoodsFacade: UserGoodsFacadeService,
+    private catalogFacade: CatalogFacadeService
   ) {}
 
   ngOnInit(): void {
@@ -78,16 +82,18 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   }
 
   private handleCategoryChanged(route: Params): void {
-    this.category = route.category
-    this.subcategory = route.subcategory
+    this.category = this.catalogFacade.getCategory(route.category)
+    this.subcategory = this.category?.subCategories.find(
+      subcat => subcat.id === route.subcategory
+    )
     this.getProducts()
   }
 
   private getProducts(): void {
     // console.log('try to get products from products-list component')
     this.productsFacade.getProducts(
-      this.category,
-      this.subcategory,
+      this.category?.id ?? 'category',
+      this.subcategory?.id ?? 'subcategory',
       this.pageNumber
     )
   }

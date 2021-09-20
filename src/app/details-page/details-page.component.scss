@@ -60,6 +60,7 @@
 .details {
   &__price {
     font-size: 24px;
+    margin-bottom: 20px;
   }
   &-description{
     margin: 40px 0 20px;
@@ -67,4 +68,24 @@
 }
 .tab-item {
   padding: 40px 20px 20px;
+}
+
+.info__items-list {
+  padding-top: 20px;
+  & li {
+    padding: 20px 0;
+    border-top: 1px solid #ccc;
+  }
+  & .info__item-icon {
+    font-size: 14px;
+    padding: 6px;
+    margin-right: 10px;
+    background-color: var(--accent-red);
+    border-radius: 50%;
+    color: #fff;
+  }
+}
+
+.rating {
+  margin-top: 20px;
 }

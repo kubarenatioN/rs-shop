@@ -58,11 +58,34 @@
       class="btn-from-favorite "
       *ngIf="isInFavorite(product.id)"
       (click)="removeFromFavorite(product.id)">Удалить из избранного</button>
+
+      <app-star-rating class="rating" [rating]="product.rating"></app-star-rating>
+
       <ul class="info__items-list">
-        <li>Доставка 3 дня</li>
-        <li>Сопутствующие товары</li>
-        <li>Гарантия 3 года</li>
-        <li>Доставка по всей Беларуси</li>
+        <li>
+          <span class="info__item-icon material-icons-outlined">
+            done_outline
+          </span>
+          <span class="info__item-text">Товар в наличии, {{product.availableAmount}} шт.</span>
+        </li>
+        <li>
+          <span class="info__item-icon material-icons-outlined">
+            build
+          </span>
+          <span class="info__item-text">Сопутствующие услуги</span>
+        </li>
+        <li>
+          <span class="info__item-icon material-icons-outlined">
+            local_shipping
+          </span>
+          <span class="info__item-text">Доставка в {{location$ | async}}</span>
+        </li>
+        <li>
+          <span class="info__item-icon material-icons-outlined">
+            fact_check
+          </span>
+          <span class="info__item-text">Гарантия 3 года</span>
+        </li>
       </ul>
     </div>
   </div>

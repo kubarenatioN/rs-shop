@@ -1,4 +1,18 @@
 <div class="container">
+  <ul 
+  class="breadcrumbs"
+  *ngIf="category && subcategory">
+    <li>
+      <a [routerLink]="['/category', category.id]">
+        {{category.name}}
+      </a>
+    </li>
+    <li>
+      <span>
+        {{subcategory.name}}
+      </span>
+    </li>
+  </ul>
   <app-sortbar class="sortbar"></app-sortbar>
   <hr>
   <ul class="list">
@@ -9,7 +23,7 @@
       (addToFavoriteEvent)="addItemToFavorite($event)"
       (removeFromFavoriteEvent)="removeItemFromFavorite($event)"
       [product]="product"
-      [breadcrumbs]="{category, subcategory}"></app-product-card>
+      [breadcrumbs]="{category: category!.id, subcategory: subcategory!.id}"></app-product-card>
     </li>
   </ul>
   <button 

@@ -24,4 +24,16 @@
     box-shadow: var(--dropdown-shadow);
     z-index: 2;
   }
+  &__result-category {
+    padding: 15px 10px;
+    font-size: 16px;
+    color: var(--blue-btn);
+    border-bottom: 1px solid #ccc;
+    &:hover {
+      text-decoration: underline;
+    }
+    & a {
+      display: block;
+    }
+  }
 }

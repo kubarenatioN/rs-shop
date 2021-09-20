@@ -2,13 +2,15 @@
   appDropdown
   (closeDropdown)="isActive = false"
   class="search">
-    <input #input (input)="onSearch(input.value)" (focus)="onSearch(input.value)"/>
+    <input #input (input)="onSearch(input.value)" (focus)="onSearch(input.value)" maxlength="50"/>
     <ng-container *ngIf="{ categories: searchCategories$ | async, products: searchProducts$ | async } as items">
       <div 
       class="results"
       *ngIf="isActive">
         <ul>
-          <li *ngFor="let category of items.categories">
+          <li 
+          class="search__result-category"
+          *ngFor="let category of items.categories">
             <a routerLink="/category{{category.categoryId ? '/'+category.categoryId : ''}}/{{category.id}}">
               {{category.name}}
             </a>

@@ -16,7 +16,6 @@ export class AuthService {
   constructor(private http: AuthHttpService, private store: AuthStoreService) {
     this.store.token$.subscribe(token => {
       this.token = token
-      // console.log('token from store: ', token)
       this.getUserInfo()
     })
     this.http.token$.subscribe(token => {

@@ -3,6 +3,9 @@ a {
   display: flex;
   flex-direction: column;
   padding: 10px;
+  &:hover {
+    box-shadow: var(--card-hover-shadow);
+  }
 }
 .name {
   font-size: 14px;

@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router'
 import SwiperCore, { Swiper, Thumbs } from 'swiper'
 import { SwiperComponent } from 'swiper/angular'
 import { CatalogFacadeService } from '../core/services/catalog/catalog-facade.service'
+import { LocationService } from '../core/services/location.service'
 import { UserGoodsFacadeService } from '../core/services/user-goods/user-goods-facade.service'
 import { ICategory } from '../shared/models/category.model'
 import { IProduct } from '../shared/models/product.model'
@@ -16,7 +17,7 @@ SwiperCore.use([Thumbs])
   templateUrl: './details-page.component.html',
   styleUrls: ['./details-page.component.scss']
 })
-export class DetailsPageComponent implements OnInit, AfterViewInit {
+export class DetailsPageComponent implements OnInit {
   product?: IProduct
 
   breadcrumbs?: { category?: ICategory; subcategory?: ISubCategory }
@@ -28,22 +29,20 @@ export class DetailsPageComponent implements OnInit, AfterViewInit {
   @ViewChild('detailsSwiper', { static: false })
   detailsSwiper!: SwiperComponent
 
+  location$ = this.location.location$
+
   constructor(
     private route: ActivatedRoute,
     private facade: ProductDetailsFacadeService,
     private userGoodsFacade: UserGoodsFacadeService,
-    private catalogFacade: CatalogFacadeService
+    private catalogFacade: CatalogFacadeService,
+    private location: LocationService
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!
     this.facade.getProduct(id)
     this.getBreadcrumbs(this.route.snapshot)
-  }
-
-  ngAfterViewInit(): void {
-    console.log('after view init')
-    // console.log(this.detailsSwiper)
   }
 
   isInCart(id: string): boolean {
