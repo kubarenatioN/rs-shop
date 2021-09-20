@@ -21,6 +21,7 @@
     <div class="details-main__slider-container">
       <swiper
         class="details-main__slider"
+        [class.product--popular]="product.rating === 5"
         #detailsSwiper
       >
         <ng-template swiperSlide *ngFor="let image of product.imageUrls">

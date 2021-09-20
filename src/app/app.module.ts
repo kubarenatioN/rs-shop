@@ -9,7 +9,6 @@ import { CoreModule } from './core/core.module'
 import { MainPageModule } from './main-page/main-page.module'
 import { SharedModule } from './shared/shared.module'
 
-
 registerLocaleData(localeRu, 'ru')
 
 @NgModule({

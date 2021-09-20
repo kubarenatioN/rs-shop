@@ -34,6 +34,9 @@
     margin: 0;
     margin-right: 40px;  
   }
+  &__slider::after {
+    z-index: 1;
+  } 
   &__thumbs-slider {
     max-width: 360px;
     margin: 0 auto;
