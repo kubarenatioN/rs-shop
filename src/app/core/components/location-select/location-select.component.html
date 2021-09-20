@@ -7,7 +7,7 @@ class="location__wrapper">
     <span class="material-icons-outlined">
       place
     </span>
-    {{(currentLocation$ | async)?.city ?? 'Unknown'}}
+    {{(currentLocation$ | async) ?? 'Unknown'}}
   </button>
   <ul 
   *ngIf="isOpen"
