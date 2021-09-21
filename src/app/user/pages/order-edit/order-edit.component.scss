@@ -35,3 +35,27 @@
     font-size: 20px;
   }
 }
+
+
+@media(max-width: 1000px) {
+  .heading {
+    display: none;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li {
+    max-width: 33%;
+  }
+}
+@media(max-width: 768px) {
+  li {
+    max-width: 50%;
+  }
+}
+@media(max-width: 640px) {
+  li {
+    max-width: 100%;
+  }
+}

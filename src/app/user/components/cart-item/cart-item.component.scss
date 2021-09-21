@@ -54,3 +54,21 @@
     text-decoration: underline;
   }
 }
+
+@media(max-width: 1000px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .counter,
+  .delivery,
+  .price,
+  .image__wrapper {
+    flex: auto;
+  }
+  .name__wrapper {
+    padding: 10px 5px;
+    text-align: center;
+  }
+}

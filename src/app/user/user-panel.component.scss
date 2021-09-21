@@ -19,3 +19,18 @@
 .btn-logout{
   width: 100%;
 }
+
+
+@media(max-width: 900px) {
+  .nav {
+    max-width: 180px;
+    padding-right: 10px;
+    li > a {
+      padding: 4px 10px;
+      white-space: normal;
+    }
+  }
+  .content {
+    padding-left: 10px;
+  }
+}

@@ -5,7 +5,7 @@
     [routerLink]="['/details', product.id]">
       <img 
         class="image" 
-        [src]="product.imageUrls[0]" 
+        [src]="product.imageUrls[0] || './assets/images/default_preview.jpeg'" 
         [alt]="product.name">
     </a>
     <button 

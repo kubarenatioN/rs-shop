@@ -4,12 +4,9 @@
       <a [routerLink]="['/details', product.id]">
         <img 
           class="image" 
-          [src]="product.imageUrls[0]" 
+          [src]="product.imageUrls[0] || './assets/images/default_preview.jpeg'" 
           [alt]="product.name">
       </a>
-      <button 
-      class="remove-from-cart-btn btn-reset"
-      (click)="removeFromList()">Удалить</button>
     </div>
     <div class="name__wrapper">
       <h6 class="name">
@@ -24,7 +21,7 @@
   </div>
 
   <div class="counter">
-    <!-- <app-amount-counter [(ngModel)]="amount" (ngModelChange)="recalculatePrice()" [max]="product.availableAmount"></app-amount-counter> -->
+    <span class="counter__amount">Заказано: </span>
     <span>
       {{amount}}
     </span>

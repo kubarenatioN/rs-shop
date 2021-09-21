@@ -70,6 +70,28 @@
             <td>{{order.details.comment}}</td>
           </tr>
         </table>
+        <table class="order-details__table--column">
+          <tr>
+            <th>ФИО</th>
+            <td>{{order.details.name}}</td>
+          </tr>
+          <tr>
+            <th>Адрес</th>
+            <td>{{order.details.address}}</td>
+          </tr>
+          <tr>
+            <th>Телефон</th>
+            <td>{{order.details.phone}}</td>
+          </tr>
+          <tr>
+            <th>Дата</th>
+            <td>{{order.details.timeToDeliver | date}}</td>
+          </tr>
+          <tr>
+            <th>Комментарий</th>
+            <td>{{order.details.comment}}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </mat-expansion-panel>

@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Renderer2
+} from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { CatalogFacadeService } from 'src/app/core/services/catalog/catalog-facade.service'
@@ -9,6 +15,8 @@ import { ISubCategory } from 'src/app/shared/models/subcategory.model'
 import { ISortOptions } from '../../models/sort-options.model'
 import { ProductsSortService } from '../../services/products-sort.service'
 import { ProductsFacadeService } from '../../services/products/products-facade.service'
+
+type ViewType = 'col' | 'row'
 
 @Component({
   selector: 'app-products-list',
@@ -36,12 +44,16 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   sortOptions: ISortOptions | null = null
 
+  viewType = 'col'
+
   constructor(
     private route: ActivatedRoute,
     private productsFacade: ProductsFacadeService,
     private sortService: ProductsSortService,
     private userGoodsFacade: UserGoodsFacadeService,
-    private catalogFacade: CatalogFacadeService
+    private catalogFacade: CatalogFacadeService,
+    private renderer: Renderer2,
+    private el: ElementRef
   ) {}
 
   ngOnInit(): void {
@@ -105,5 +117,9 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   private clearProductList(): void {
     this.productsFacade.clear()
+  }
+
+  changeView(view: ViewType): void {
+    this.viewType = view
   }
 }

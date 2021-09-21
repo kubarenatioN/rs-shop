@@ -18,7 +18,7 @@
   </ul>
   <h3 class="title">{{ product.name }}</h3>
   <div class="details-main">
-    <div class="details-main__slider-container">
+    <div class="details-main__slider-container" *ngIf="product.imageUrls.length > 0; else noImages">
       <swiper
         class="details-main__slider"
         [class.product--popular]="product.rating === 5"
@@ -38,6 +38,9 @@
         </ng-template>
       </swiper>
     </div>
+    <ng-template #noImages>
+      <img src="./assets/images/default_preview.jpeg" alt="Product no photo">
+    </ng-template>
 
     <div class="details-main__info">
       <span class="details__price">

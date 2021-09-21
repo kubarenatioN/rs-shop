@@ -3,7 +3,7 @@
     <a [routerLink]="['/details', product.id]">
       <img 
         class="image" 
-        [src]="product.imageUrls[0]" 
+        [src]="product.imageUrls[0] || './assets/images/default_preview.jpeg'" 
         [alt]="product.name">
     </a>
     <div class="name__wrapper">
@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="counter">
-    <span>{{amount}}</span>
+    <span class="item-amount">Заказано: </span><span>{{amount}}</span>
   </div>
   <ul class="delivery">
     <li>Курьером: сегодня</li>

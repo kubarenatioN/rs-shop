@@ -53,6 +53,11 @@
   &__table {
     border-collapse: collapse;
     width: 100%;
+    &--column{
+      border-collapse: collapse;
+      width: 100%;
+      display: none;
+    }
   }
   & td, th {
     padding: 6px 10px;
@@ -67,5 +72,24 @@
   & span {
     font-weight: 700;
     font-size: 16px;
+  }
+}
+
+@media(max-width: 1000px) {
+  .heading {
+    display: none;
+  }
+  .order-items {
+    display: flex;
+    flex-wrap: wrap;
+    li {
+      width: 100%;
+    }
+  }
+  .order-details__table{
+    display: none;
+    &--column {
+      display: block; 
+    }
   }
 }

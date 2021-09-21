@@ -39,6 +39,9 @@
 }
 .counter {
   flex: 140px;
+  &__amount {
+    display: none;
+  }
 }
 .delivery {
   flex: 160px;
@@ -55,5 +58,37 @@
   margin-top: 10px;
   &:hover {
     text-decoration: underline;
+  }
+}
+
+@media(max-width: 1000px) {
+  .image__wrapper {
+    max-width: 100%;
+  }
+  .counter__amount {
+    display: inline;
+  }
+  .cart-item {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .image {
+    padding: 0;
+  }
+  .product {
+    flex-direction: column;
+  }
+  .name__wrapper {
+    text-align: center;
+  }
+  .name {
+    padding: 0 5px;
+    margin: 5px 0;
+  }
+  .counter,
+  .delivery,
+  .price {
+    flex: auto;
+    text-align: center;
   }
 }

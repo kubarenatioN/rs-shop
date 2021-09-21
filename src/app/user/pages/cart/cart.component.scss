@@ -30,3 +30,22 @@
     padding-right: 10px;
   }
 } 
+
+@media(max-width: 1000px) {
+  .heading {
+    display: none;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li {
+    max-width: 33%;
+  }
+}
+
+@media(max-width: 900px) {
+  li {
+    max-width: 50%;
+  }
+}

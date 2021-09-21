@@ -6,7 +6,8 @@ import { OfferItemComponent } from './components/offer-item/offer-item.component
 import { PopularGoodsComponent } from './components/popular-goods/popular-goods.component'
 import { PopularProductCardComponent } from './components/popular-product-card/popular-product-card.component'
 import { MainPageRoutingModule } from './main-page-routing.module'
-import { MainComponent } from './pages/main/main.component'
+import { MainComponent } from './pages/main/main.component';
+import { AdvantagesComponent } from './components/advantages/advantages.component'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MainComponent } from './pages/main/main.component'
     PopularGoodsComponent,
     MainSliderComponent,
     PopularProductCardComponent,
-    OfferItemComponent
+    OfferItemComponent,
+    AdvantagesComponent
   ],
   imports: [SharedModule, HttpClientModule, MainPageRoutingModule],
   exports: [MainComponent, MainSliderComponent]
