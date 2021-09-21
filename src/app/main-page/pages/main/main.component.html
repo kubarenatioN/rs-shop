@@ -1,5 +1,7 @@
 <div class="slider__container container">
-  <app-main-slider *ngIf="slides$ | async as slides" [slides]="slides"></app-main-slider>
+  <div class="swiper__wrapper">
+    <app-main-slider *ngIf="slides$ | async as slides" [slides]="slides"></app-main-slider>
+  </div>
   <ul 
   *ngIf="offers$ | async as offers"
   class="offers__container">

@@ -2,13 +2,52 @@
   display: flex;
   align-items: flex-start;
   margin: 0 auto;
+  padding-top: 40px;
 }
 .offers__container{
-  padding-top: 40px;
   display: flex;
   flex-wrap: wrap;
   & li {
     width: 50%;
     height: 200px;
+  }
+}
+
+.swiper__wrapper {
+  max-width: 700px;
+}
+
+@media(max-width: 1240px) {
+  .swiper__wrapper {
+    max-width: 70%;
+  }
+  .offers__container{
+    & li {
+      height: 180px;
+    }
+  }
+}
+
+@media(max-width: 1000px) {
+  .offers__container{
+    & li {
+      height: 160px;
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .slider__container {
+    display: flex;
+    flex-direction: column;
+  }
+  .swiper__wrapper {
+    max-width: 100%;
+  }
+  .offers__container{
+    padding-top: 40px;
+    & li {
+      height: 160px;
+    }
   }
 }

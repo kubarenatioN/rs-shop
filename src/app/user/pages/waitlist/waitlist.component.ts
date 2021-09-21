@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router'
 import { IOrder } from 'src/app/shared/models/order-item.model'
 import { IProduct } from 'src/app/shared/models/product.model'
@@ -18,7 +19,8 @@ export class WaitlistComponent {
 
   constructor(
     private ordersFacade: OrdersFacadeService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   getAmount(order: IOrder, id: string): number {
@@ -39,6 +41,9 @@ export class WaitlistComponent {
 
   deleteItem(id: string): void {
     this.ordersFacade.removeOrder(id)
+    this.snackBar.open(`Заказ №${id.toUpperCase()} удален`, 'OK', {
+      duration: 3000
+    })
   }
 
   getSummaryPrice(products: IProduct[], order: IOrder): number {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { ActivatedRoute } from '@angular/router'
 import {
   IOrder,
@@ -30,7 +31,8 @@ export class OrderEditComponent implements OnInit {
 
   constructor(
     private ordersFacade: OrdersFacadeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -88,6 +90,9 @@ export class OrderEditComponent implements OnInit {
       details: newOrderDetails
     }
     this.ordersFacade.editOrder(newOrder)
+    this.snackBar.open('Ваш заказ успешно изменен', 'OK', {
+      duration: 3000
+    })
   }
 
   removeItemFromList(id: string): void {

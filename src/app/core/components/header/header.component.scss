@@ -145,3 +145,32 @@
     left: 50%;
   }
 }
+
+@media(max-width: 1000px) {
+  .cart-link-btn {
+    padding: 9px 10px;
+    & .btn-icon {
+      margin: 0;
+    }
+    & .btn-text {
+      display: none;
+    }
+  }
+  .catalog-btn{
+    padding: 7px;
+    & .catalog-icon__circle {
+      margin-right: 0;
+    }
+    &__text{
+      display: none;
+    }
+  }
+}
+
+@media(max-width: 600px) {
+  .header-upper {
+    & .container {
+      align-items: flex-end;
+    }
+  }
+}

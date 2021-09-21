@@ -19,3 +19,21 @@ img {
   height: 140px;
   object-fit: contain;
 }
+
+@media(max-width: 1240px) {
+  img {
+    height: 100px;
+  }
+}
+
+@media(max-width: 1000px) {
+  img {
+    height: 60px;
+  }
+}
+
+@media(max-width: 768px) {
+  img {
+    height: 100px;
+  }
+}

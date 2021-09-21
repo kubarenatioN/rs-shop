@@ -1,6 +1,7 @@
-<mat-accordion>
+<ng-container *ngIf="orders$ | async as orders">
+<mat-accordion *ngIf="orders.length > 0; else noOrders">
   <mat-expansion-panel 
-  *ngFor="let order of orders$ | async"
+  *ngFor="let order of orders"
   (opened)="loadProducts(order)"
   (closed)="clearProducts()">
     <mat-expansion-panel-header>
@@ -73,3 +74,8 @@
     </div>
   </mat-expansion-panel>
 </mat-accordion>
+</ng-container>
+
+<ng-template #noOrders>
+  <p>Нет заказов</p>
+</ng-template>

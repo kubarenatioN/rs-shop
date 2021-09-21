@@ -96,28 +96,4 @@ export class UserGoodsFacadeService {
       })
     )
   }
-
-  // setCartGoods(): void {
-  //   this.productsFacade.getProductsById(this.store.cart).subscribe(res => {
-  //     const cart = res.map(p => ({
-  //       ...p,
-  //       isInCart: this.isInCart(p.id)
-  //       // isFavorite: this.isInFavorite(p.id)
-  //     }))
-  //     this.store.setCartGoods(cart)
-  //     this.productsFacade.updateGoodsStatus()
-  //   })
-  // }
-
-  // setFavoriteGoods(): void {
-  //   this.productsFacade.getProductsById(this.store.favorites).subscribe(res => {
-  //     const favorites = res.map(p => ({
-  //       ...p,
-  //       // isInCart: this.isInCart(p.id),
-  //       isFavorite: this.isInFavorite(p.id)
-  //     }))
-  //     this.store.setFavoriteGoods(favorites)
-  //     this.productsFacade.updateGoodsStatus()
-  //   })
-  // }
 }

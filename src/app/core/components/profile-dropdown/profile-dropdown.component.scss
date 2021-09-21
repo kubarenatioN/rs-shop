@@ -62,3 +62,22 @@ hr{
   align-items: center;
   white-space: nowrap;
 }
+
+@media(max-width: 1000px) {
+  .dropdown{
+    &__menu {
+      right: 0;
+      left: unset;
+      transform: translate(0, 0);
+    }
+  }  
+  .toggle-btn {
+    padding: 9px 10px;
+    & .btn-icon {
+      margin: 0;
+    }
+    & .btn-text {
+      display: none;
+    }
+  }
+}

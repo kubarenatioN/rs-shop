@@ -15,9 +15,8 @@
   & .results {
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0;
-    width: 100%;
+    left: -40px;
+    right: -40px;
     padding: 20px;
     border-radius: 6px;
     background-color: #fff;
@@ -34,6 +33,15 @@
     }
     & a {
       display: block;
+    }
+  }
+}
+
+@media(max-width: 1000px) {
+  .search {
+    & .results {
+      left: -190px;
+      right: -106px;
     }
   }
 }

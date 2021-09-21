@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 import { ProductsFacadeService } from 'src/app/category-page/services/products/products-facade.service'
 import { AuthService } from 'src/app/core/services/auth/auth.service'
 import { IOrder } from 'src/app/shared/models/order-item.model'
@@ -17,11 +18,12 @@ export class OrdersFacadeService {
     private http: OrdersHttpService,
     private store: OrdersStoreService,
     private auth: AuthService,
-    private productsFacade: ProductsFacadeService
+    private productsFacade: ProductsFacadeService,
+    private router: Router
   ) {
     auth.user$.subscribe(user => {
       if (user !== null) {
-        console.log(user.orders)
+        console.log('user orders: ', user.orders)
         this.store.setOrders(user.orders)
       } else {
         this.store.setOrders([])
@@ -54,15 +56,14 @@ export class OrdersFacadeService {
 
   removeOrder(id: string): void {
     this.http.removeOrder(id).subscribe(() => {
-      console.log('remove')
       this.auth.getUserInfo()
     })
   }
 
   editOrder(newOrder: IOrder): void {
-    this.http.updateOrder(newOrder).subscribe(res => {
-      console.log('put http', res)
+    this.http.updateOrder(newOrder).subscribe(() => {
       this.auth.getUserInfo()
+      this.router.navigate(['/user/waitlist'])
     })
   }
 }

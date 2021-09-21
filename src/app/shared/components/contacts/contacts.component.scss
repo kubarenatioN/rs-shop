@@ -27,3 +27,17 @@
   align-items: center;
   margin-left: 10px;
 }
+
+
+@media(max-width: 600px) {
+  .contacts__wrapper {
+    font-size: 12px;
+  }
+}
+
+@media(max-width: 1000px) {
+  .contacts__list {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}

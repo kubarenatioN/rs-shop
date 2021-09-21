@@ -4,7 +4,7 @@ class="location__wrapper">
   <button
   class="btn-reset"
   (click)="toggle()">
-    <span class="material-icons-outlined">
+    <span class="material-icons-outlined btn-icon">
       place
     </span>
     {{(currentLocation$ | async) ?? 'Unknown'}}

@@ -48,3 +48,30 @@ img {
   font-size: 20px;
   margin-top: auto;
 }
+
+@media(max-width: 1000px) {
+  a {
+    padding: 16px;
+    & .title {
+      margin-top: 10px;
+    }
+  }
+
+  .title {
+    max-height: 3.3em;
+  }
+  
+  .descr {
+    max-height: 2.2em;
+  }
+  
+}
+
+@media(max-width: 768px) {
+  :host {
+    width: 50%;
+  }
+  .title {
+    font-size: 14px;
+  }
+}

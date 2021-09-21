@@ -24,7 +24,10 @@
   </div>
 
   <div class="counter">
-    <app-amount-counter [(ngModel)]="amount" (ngModelChange)="recalculatePrice()" [max]="product.availableAmount"></app-amount-counter>
+    <!-- <app-amount-counter [(ngModel)]="amount" (ngModelChange)="recalculatePrice()" [max]="product.availableAmount"></app-amount-counter> -->
+    <span>
+      {{amount}}
+    </span>
   </div>
   <ul class="delivery">
     <li>Курьером: сегодня</li>
