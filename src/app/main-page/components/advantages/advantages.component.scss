@@ -1,0 +1,43 @@
+.section-title {
+  margin-top: 50px;
+}
+.advantages {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-bottom: 60px;
+  li {
+    padding: 20px;
+    max-width: 30%;
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+    transition: .2s;
+    cursor: default;
+    &:hover {
+      background-color: var(--link-hover-bg);
+    }
+    h4 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent-red);
+    }
+    p {
+      padding: 0 10px;
+      margin-top: 20px;
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .advantages {
+    li {
+      max-width: 48%;
+      padding: 10px;
+    }
+    h4 {
+      font-size: 18px;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  &__item {
+    width: 50%;
+  }
+}
+
+@media(max-width: 1000px) {
+  .list {
+    &__item {
+      width: 100%;
+    }
+  }
+}

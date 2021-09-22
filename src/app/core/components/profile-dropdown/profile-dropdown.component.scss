@@ -1,0 +1,83 @@
+:host {
+  position: relative;
+}
+.dropdown{
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translate(-50%, 0);
+    flex-direction: column;
+    z-index: 3;
+    padding: 10px 4px;
+    border-radius: 6px;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: var(--dropdown-shadow);
+  }
+}
+
+.toggle-btn {
+  min-height: 42px;
+  border-radius: 21px;
+  &:hover {
+    color: var(--accent-red);
+  }
+}
+.toggle-btn.active {
+  transition: .2s color;
+  color: var(--accent-red);
+}
+
+.enter-btn{
+  margin: 10px auto;
+}
+
+.avatar {
+  margin: 0 auto;
+  width: 60px;
+}
+
+.username{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn-reset{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+hr{
+  width: 100%;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+@media(max-width: 1000px) {
+  .dropdown{
+    &__menu {
+      right: 0;
+      left: unset;
+      transform: translate(0, 0);
+    }
+  }  
+  .toggle-btn {
+    padding: 9px 10px;
+    & .btn-icon {
+      margin: 0;
+    }
+    & .btn-text {
+      display: none;
+    }
+  }
+}

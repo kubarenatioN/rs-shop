@@ -1,0 +1,47 @@
+<div class="container"> 
+  <ul class="nav">
+    <li>
+      <a 
+      class="list-item"
+      routerLink="/user/cart">
+        <span class="material-icons-outlined btn-icon">
+          shopping_cart
+        </span>
+        Корзина
+      </a>
+    </li>
+    <hr />
+    <li >
+      <a class="list-item" routerLink="/user/favorite">
+        <span class="material-icons-outlined btn-icon">
+          favorite_border
+        </span>
+        Избранные товары
+      </a>
+    </li>
+    <li >
+      <a class="list-item" routerLink="/user/waitlist">
+        <span class="material-icons-outlined btn-icon">
+          hourglass_empty
+        </span>
+        Лист ожидания
+      </a>
+    </li>
+    <hr />
+    <button
+    class="list-item btn-reset btn-logout"
+    (click)="logout()">
+      <span class="material-icons-outlined btn-icon">
+        logout
+      </span>
+      <span>
+        Выйти
+      </span> 
+    </button>
+  </ul>
+  <div class="content">
+    <h1>{{title}}</h1>
+    <hr>
+    <router-outlet (activate)="componentAdded($event)"></router-outlet>
+  </div>
+</div>

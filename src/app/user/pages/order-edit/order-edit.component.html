@@ -1,0 +1,43 @@
+<ng-container *ngIf="order !== null">
+  <a 
+  class="cancel-btn btn-reset"
+  routerLink="/user/waitlist">
+    <span class="material-icons-outlined">
+      arrow_back
+    </span>
+    Назад
+  </a>
+  <div class="heading">
+    <span class="product">
+      Товар
+    </span>
+    <span class="amount">
+      Количество
+    </span>
+    <span class="delivery">
+      Доставка
+    </span>
+    <span class="price">
+      Стоимость
+    </span>
+  </div>
+  <ul>
+    <li *ngFor="let item of products">
+      <app-order-edit-item 
+      [product]="item"
+      [amount]="getProductAmount(item.id)"
+      (itemChanged)="onItemChanged($event)" 
+      (removeFromListEvent)="removeItemFromList($event)"></app-order-edit-item>
+    </li>
+  </ul>
+  <div class="summary-price">
+    <span>
+      {{summaryPrice | currency:"BYN":"symbol":"1.0-2":"ru" }}
+    </span>
+  </div>
+  <app-order-form
+  [prevDetails]="order.details"
+  [hasCancelBtn]="false"
+  [canSubmit]="checkAmounts()"
+  (submitOrderEvent)="submitEditOrder($event)"></app-order-form>
+</ng-container>

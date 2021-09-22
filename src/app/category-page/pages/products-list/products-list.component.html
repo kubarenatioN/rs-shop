@@ -1,0 +1,59 @@
+<div class="container">
+  <ul 
+  class="breadcrumbs"
+  *ngIf="category && subcategory">
+    <li>
+      <a [routerLink]="['/category', category.id]">
+        {{category.name}}
+      </a>
+    </li>
+    <li>
+      <span>
+        {{subcategory.name}}
+      </span>
+    </li>
+  </ul>
+  <div class="sortbar__wrapper">
+    <app-sortbar class="sortbar"></app-sortbar>
+    <div class="view-buttons">
+      <button 
+      class="view-btn"
+      [class.active]="viewType === 'col'"
+      (click)="changeView('col')">
+        <span class="material-icons-outlined">
+          view_column
+        </span>
+      </button>
+      <button 
+      class="view-btn"
+      [class.active]="viewType === 'row'"
+      (click)="changeView('row')">
+        <span class="material-icons-outlined">
+          menu
+        </span>
+      </button>
+    </div>
+  </div>
+  <hr>
+  <ul class="list">
+    <li [class]="['list__item', viewType]" *ngFor="let product of products | sort:sortOptions">
+      <app-product-card 
+      [class]="[viewType]"
+      (addToCartEvent)="addItemToCart($event)" 
+      (removeFromCartEvent)="removeItemFromCart($event)" 
+      (addToFavoriteEvent)="addItemToFavorite($event)"
+      (removeFromFavoriteEvent)="removeItemFromFavorite($event)"
+      [product]="product"
+      [breadcrumbs]="{category: category!.id, subcategory: subcategory!.id}"></app-product-card>
+    </li>
+  </ul>
+  <button 
+  class="loadmore-btn btn-blue"
+  [disabled]="isAllLoaded$ | async"
+  (click)="loadMoreProducts()">
+    Загрузить еще
+    <span class="material-icons-outlined">
+      refresh
+    </span>
+  </button>
+</div>

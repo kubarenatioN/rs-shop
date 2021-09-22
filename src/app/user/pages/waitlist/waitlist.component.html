@@ -1,0 +1,103 @@
+<ng-container *ngIf="orders$ | async as orders">
+<mat-accordion *ngIf="orders.length > 0; else noOrders">
+  <mat-expansion-panel 
+  *ngFor="let order of orders"
+  (opened)="loadProducts(order)"
+  (closed)="clearProducts()">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Заказ №{{order.id | uppercase}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="order-info">
+      <div class="order-heading">
+        <button 
+        class="order-heading__btn"
+        (click)="deleteItem(order.id!)">
+          <span class="material-icons-outlined">
+            delete
+          </span>
+        </button>
+        <a 
+        class="order-heading__btn"
+        [routerLink]="['/user/edit-order', order.id]">
+          <span class="material-icons-outlined">
+            edit
+          </span>
+        </a>
+      </div>
+      <div class="heading">
+        <span class="product">
+          Товар
+        </span>
+        <span class="amount">
+          Количество
+        </span>
+        <span class="delivery">
+          Доставка
+        </span>
+        <span class="price">
+          Стоимость
+        </span>
+      </div>
+      <ng-container *ngIf="products$ | async as products">
+        <ul class="order-items">
+          <li *ngFor="let item of products">
+            <app-order-item [product]="item" [amount]="getAmount(order, item.id)"></app-order-item>
+          </li>
+        </ul>
+        <div class="summary-price">
+          <span>
+            К оплате: {{getSummaryPrice(products, order) | currency: "BYN":"symbol":"1.0-2":"ru"}}
+          </span>
+        </div>
+      </ng-container>
+      <div class="order-details">
+        <h4>Детали заказа:</h4>
+        <table class="order-details__table">
+          <tr>
+            <th>ФИО</th>
+            <th>Адрес</th>
+            <th>Телефон</th>
+            <th>Дата</th>
+            <th>Комментарий</th>
+          </tr>
+          <tr>
+            <td>{{order.details.name}}</td>
+            <td>{{order.details.address}}</td>
+            <td>{{order.details.phone}}</td>
+            <td>{{order.details.timeToDeliver | date}}</td>
+            <td>{{order.details.comment}}</td>
+          </tr>
+        </table>
+        <table class="order-details__table--column">
+          <tr>
+            <th>ФИО</th>
+            <td>{{order.details.name}}</td>
+          </tr>
+          <tr>
+            <th>Адрес</th>
+            <td>{{order.details.address}}</td>
+          </tr>
+          <tr>
+            <th>Телефон</th>
+            <td>{{order.details.phone}}</td>
+          </tr>
+          <tr>
+            <th>Дата</th>
+            <td>{{order.details.timeToDeliver | date}}</td>
+          </tr>
+          <tr>
+            <th>Комментарий</th>
+            <td>{{order.details.comment}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+</ng-container>
+
+<ng-template #noOrders>
+  <p>Нет заказов</p>
+</ng-template>

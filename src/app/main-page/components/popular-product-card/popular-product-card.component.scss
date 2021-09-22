@@ -1,0 +1,77 @@
+:host {
+  width: 33.3%;
+}
+a {
+  padding: 24px 20px;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  background-color: #fff;
+  min-height: 100px;
+  position: relative;
+  &:hover {
+    color: #000;
+    box-shadow: var(--card-hover-shadow);
+    z-index: 1;
+    & .title {
+      text-decoration: underline;
+    }
+  }
+}
+img {
+  height: 150px;
+  max-width: 32%;
+  width: 100%;
+  margin-right: 20px;
+  object-fit: contain;
+}
+.info {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+.title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1;
+  max-height: 2.2em;
+  overflow: hidden;
+}
+
+.descr {
+  margin: 10px 0;
+  line-height: 1.1;
+  max-height: 3.3em;
+  overflow: hidden;
+}
+
+.price {
+  font-size: 20px;
+  margin-top: auto;
+}
+
+@media(max-width: 1000px) {
+  a {
+    padding: 16px;
+    & .title {
+      margin-top: 10px;
+    }
+  }
+
+  .title {
+    max-height: 3.3em;
+  }
+  
+  .descr {
+    max-height: 2.2em;
+  }
+  
+}
+
+@media(max-width: 768px) {
+  :host {
+    width: 50%;
+  }
+  .title {
+    font-size: 14px;
+  }
+}

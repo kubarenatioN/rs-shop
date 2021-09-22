@@ -1,0 +1,48 @@
+<ng-container *ngIf="products.length > 0; else noProducts">
+  <div class="heading">
+    <span class="image">
+      Товар
+    </span>
+    <span class="product">
+    </span>
+    <span class="amount">
+      Количество
+    </span>
+    <span class="delivery">
+      Доставка
+    </span>
+    <span class="price">
+      Стоимость
+    </span>
+  </div>
+  <ul>
+    <li *ngFor="let item of products">
+      <app-cart-item 
+      (itemChanged)="onItemChanged($event)" 
+      [product]="item"
+      [amount]="getItemAmount(item.id)"></app-cart-item>
+    </li>
+  </ul>
+  <hr>
+  <div class="summary-price">
+    <span>
+      {{summaryPrice | currency:"BYN":"symbol":"1.0-2":"ru" }}
+    </span>
+  </div>
+  <button 
+  *ngIf="!isOrderFormActive"
+  class="btn-blue"
+  [disabled]="!checkAmounts() || isOrderFormActive"
+  (click)="makeOrder()">Оформить заказ</button>
+
+  <app-order-form 
+  *ngIf="isOrderFormActive"
+  [canSubmit]="checkAmounts()"
+  (cancelOrderEvent)="cancelOrder()"
+  (submitOrderEvent)="submitOrder($event)"></app-order-form>
+
+</ng-container>
+
+<ng-template #noProducts>
+  <p>Корзина пуста</p>
+</ng-template>

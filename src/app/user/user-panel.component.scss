@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  padding: 40px 10px 60px;
+}
+
+.nav {
+  padding-right: 20px;
+  border-right: 1px solid #ccc;
+  li > a {
+    white-space: nowrap;
+  }
+}
+
+.content {
+  flex-grow: 1;
+  padding-left: 20px;
+  min-height: 80vh;
+}
+.btn-logout{
+  width: 100%;
+}
+
+
+@media(max-width: 900px) {
+  .nav {
+    max-width: 180px;
+    padding-right: 10px;
+    li > a {
+      padding: 4px 10px;
+      white-space: normal;
+    }
+  }
+  .content {
+    padding-left: 10px;
+  }
+}

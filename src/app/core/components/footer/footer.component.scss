@@ -1,0 +1,55 @@
+app-contacts {
+  display: block;
+  padding: 10px 0;
+}
+.socials {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  & li + li {
+    margin-left: 10px;
+  }
+}
+
+.svg {
+  &-vk {
+    fill: #447DBD;
+  }
+  &-facebook {
+    fill: #4469B0;
+  }
+  &-insta {
+    fill: #c02290;
+  }
+  &-youtube {
+    fill: #FF2638;
+  }
+  &-ok {
+    fill: #FA9019;
+  }
+}
+
+a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  transition: .2s;
+  &:hover {
+    box-shadow: var(--card-hover-shadow);
+    background-color: var(--link-hover-bg);
+    & svg {
+      fill: var(--accent-red);
+    }
+  }
+  & svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+use {
+  fill: inherit;
+}

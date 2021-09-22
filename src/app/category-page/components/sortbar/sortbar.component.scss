@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  padding: 10px 0;
+}
+span {
+  font-weight: 700;
+}
+.btn-sort {
+  margin-left: 20px;
+  padding-right: 20px;
+  position: relative;
+  &.active::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: scaleX(0.8) translate(-50%, -72%) rotate(-45deg);
+    border: 6px solid transparent;
+    border-left-color: var(--blue-btn);
+    border-bottom-color: var(--blue-btn);
+  }
+  &:hover {
+    color: var(--blue-btn);
+    text-decoration: underline;
+  }
+  &.active {
+    color: var(--blue-btn);
+    text-decoration: underline;
+  }
+  &.active.desc::after {
+    transform: scaleX(0.8) translate(-50%, -20%) rotate(135deg);
+  }
+}

@@ -1,0 +1,99 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list__item {
+  transition: .3s;
+  &.col {
+    max-width: 25%;
+    width: 100%;
+  }
+  &.row {
+    max-width: 50%;
+    width: 100%;
+  }
+}
+
+.container {
+  margin-top: 40px;
+}
+
+.loadmore-btn {
+  display: flex;
+  align-items: center;
+  margin: 20px auto;
+  & span {
+    margin-left: 10px;
+  }
+}
+
+.breadcrumbs{
+  display: flex;
+  padding-left: 10px;
+  & li + li {
+    padding-left: 30px;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      background-image: url('../../../../assets/icons/breadcrumb-arrow.svg');
+      background-size: contain;
+      width: 20px;
+      height: 20px;
+    }
+  }
+  & span {
+    cursor: default;
+  }
+}
+
+.sortbar{
+  &__wrapper {
+    padding: 30px 0 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+.view-buttons {
+  display: flex;
+  align-items: center;
+  & .view-btn {
+    display: block;
+    border: none;
+    background-color: #fff;
+    padding: 6px;
+    margin-left: 8px;
+    &.active {
+      background-color: var(--accent-red);
+      color: #fff;
+    }
+  }
+  & button span {
+    display: block;
+  }
+}
+
+@media(max-width: 1000px) {
+  .list__item {
+    &.col {
+      max-width: 33.3%;
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .list__item {
+    &.col {
+      max-width: 50%;
+    }
+  }
+  .list__item {
+    &.row {
+      max-width: 100%;
+    }
+  }
+}

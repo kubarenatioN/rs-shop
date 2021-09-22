@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Популярные товары</h2>
+  <swiper
+    id="popular-goods__swiper"
+    class="popular-goods__swiper"
+    [slidesPerView]="1"
+    [spaceBetween]="20"
+  >
+    <ng-template swiperSlide *ngFor="let slide of slides">
+      <app-popular-product-card
+        *ngFor="let product of slide"
+        [product]="product.item"
+        [breadcrumbs]="{category: product.category, subcategory: product.subcategory}"></app-popular-product-card>
+    </ng-template>
+  </swiper>
+</div>

@@ -1,0 +1,51 @@
+.heading {
+  display: flex;
+  background-color: #efefef;
+  padding: 6px 0;
+  border-bottom: 1px solid #ccc;
+}
+.image {
+  flex: 160px;
+  padding-left: 10px;
+}
+.product {
+  flex: 20%;
+}
+.amount {
+  flex: 140px;
+}
+.delivery {
+  flex: 160px;
+}
+.price {
+  flex: 100px;
+}
+
+.summary-price {
+  text-align: right;
+  padding: 10px 0;
+  & span {
+    font-size: 18px;
+    font-weight: 700;
+    padding-right: 10px;
+  }
+} 
+
+@media(max-width: 1000px) {
+  .heading {
+    display: none;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li {
+    max-width: 33%;
+  }
+}
+
+@media(max-width: 900px) {
+  li {
+    max-width: 50%;
+  }
+}

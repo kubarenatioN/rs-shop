@@ -1,0 +1,127 @@
+{
+  "base-categories": [
+    {
+      "id": 1,
+      "routeName": "electronics",
+      "name": "Смартфоны, ТВ и электроника"
+    },
+    {
+      "id": 2,
+      "routeName": "appliances",
+      "name": "Бытовая техника"
+    },
+    {
+      "id": 3,
+      "routeName": "home_and_garden",
+      "name": "Дом и сад"
+    },
+    {
+      "id": 4,
+      "routeName": "building",
+      "name": "Строительство и ремонт"
+    }
+  ],
+  "secondary-categories": [
+    {
+      "id": 1,
+      "baseCategoryId": 2,
+      "name": "Крупная техника для кухни"
+    },
+    {
+      "id": 2,
+      "baseCategoryId": 2,
+      "name": "Техника для ухода за одеждой"
+    },
+    {
+      "id": 3,
+      "baseCategoryId": 2,
+      "name": "Встраиваемая техника"
+    },
+    {
+      "id": 4,
+      "baseCategoryId": 1,
+      "name": "Смартфоны, аксессуары"
+    },
+    {
+      "id": 5,
+      "baseCategoryId": 1,
+      "name": "Телевизоры"
+    },
+    {
+      "id": 6,
+      "baseCategoryId": 1,
+      "name": "Планшеты, электронные книги"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "secondaryCategoryId": 4,
+      "name": "Смартфоны"
+    },
+    {
+      "id": 2,
+      "secondaryCategoryId": 4,
+      "name": "Умные часы"
+    },
+    {
+      "id": 3,
+      "secondaryCategoryId": 5,
+      "name": "Телевизоры"
+    },
+    {
+      "id": 4,
+      "secondaryCategoryId": 5,
+      "name": "Проекторы"
+    },
+    {
+      "id": 5,
+      "secondaryCategoryId": 1,
+      "name": "Холодильники"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "name": "Смартфон Xiaomi Redmi 9C 3GB/64GB без NFC (серый)",
+      "price": 379,
+      "imageUrl": "https://cdn21vek.by/img/galleries/6141/799/preview/redmi9c3gb64gbm2006c3mgnfc_xiaomi_5f4ca4d93ad5e.jpeg",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "categoryId": 1,
+      "name": "Смартфон Xiaomi Redmi 9C 2GB/32GB без NFC (синий)",
+      "price": 329,
+      "imageUrl": "https://cdn21vek.by/img/galleries/6145/112/preview/redmi9c2gb32gbm2006c3mgnfc_xiaomi_01_5f587a636ca75.jpeg",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "categoryId": 5,
+      "name": "Холодильник с морозильником Beko CSMV5335MC0S",
+      "price": 859,
+      "imageUrl": "https://cdn21vek.by/img/galleries/476/171/preview/csmv5335mc0s_beko_5a3a4c5cb078c.jpeg",
+      "rating": 5
+    }
+  ],
+  "main-slider": [
+    {
+      "img": "main-slide-1.jpg",
+      "link": "https://www.21vek.by/laminate/?filter%5Bproducer%5D%5B%5D=kronon_modern&filter%5Bproducer%5D%5B%5D=luxury_&filter%5Bsa%5D="
+    },
+    {
+      "img": "main-slide-2.jpg",
+      "link": "https://www.21vek.by/laminate/?filter%5Bproducer%5D%5B%5D=kronon_modern&filter%5Bproducer%5D%5B%5D=luxury_&filter%5Bsa%5D="
+    },
+    {
+      "img": "main-slide-3.jpg",
+      "link": "https://www.21vek.by/laminate/?filter%5Bproducer%5D%5B%5D=kronon_modern&filter%5Bproducer%5D%5B%5D=luxury_&filter%5Bsa%5D="
+    },
+    {
+      "img": "main-slide-4.jpg",
+      "link": "https://www.21vek.by/laminate/?filter%5Bproducer%5D%5B%5D=kronon_modern&filter%5Bproducer%5D%5B%5D=luxury_&filter%5Bsa%5D="
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+<a 
+class="image__wrapper"
+[class.product--popular]="product.rating === 5"
+[routerLink]="['/details', product.id]">
+  <img 
+  class="image"
+  [src]="product.imageUrls[0] || './assets/images/default_preview.jpeg'" 
+  [alt]="product.name">
+</a>
+<div class="info">
+  <a 
+  [routerLink]="['/details', product.id]">
+    <h6 class="name">{{product.name}}</h6>
+  </a>
+  <div class="rating">
+    <app-star-rating [rating]="product.rating"></app-star-rating>
+  </div>
+  <span class="price">
+    {{product.price | currency: "BYN":"symbol":"1.0-2":"ru"}}
+  </span>
+  <button
+  *ngIf="!product.isInCart"
+  class="btn-to-cart"
+  (click)="addToCart()">
+    В корзину
+  </button>
+  <button
+  *ngIf="product.isInCart"
+  class="btn-from-cart"
+  (click)="removeFromCart()">
+    Удалить из корзины
+  </button>
+  <button
+  class="btn-from-favorite"
+  (click)="removeFromFavorite()">
+    Удалить из списка
+  </button>
+</div>

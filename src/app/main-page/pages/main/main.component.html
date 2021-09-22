@@ -1,0 +1,21 @@
+<div class="slider__container container">
+  <div class="swiper__wrapper">
+    <app-main-slider *ngIf="slides$ | async as slides" [slides]="slides"></app-main-slider>
+  </div>
+  <ul 
+  *ngIf="offers$ | async as offers"
+  class="offers__container">
+    <li *ngFor="let item of offers">
+      <app-offer-item [item]="item"></app-offer-item>
+    </li>
+  </ul>
+</div>
+<app-popular-goods></app-popular-goods>
+<app-advantages></app-advantages>
+
+<div class="container">
+  <div class="video-section">
+    <h2>Видео об этом приложении</h2>
+    <iframe class="video" src="https://www.youtube.com/embed/Empd7nE5_Zk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>

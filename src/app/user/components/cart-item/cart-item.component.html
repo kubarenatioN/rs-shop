@@ -1,0 +1,35 @@
+<div class="cart-item">
+  <div class="image__wrapper">
+    <a 
+    [class.product--popular]="product.rating === 5"
+    [routerLink]="['/details', product.id]">
+      <img 
+        class="image" 
+        [src]="product.imageUrls[0] || './assets/images/default_preview.jpeg'" 
+        [alt]="product.name">
+    </a>
+    <button 
+    class="remove-from-cart-btn btn-reset"
+    (click)="removeFromCart()">Удалить</button>
+  </div>
+  <div class="name__wrapper">
+    <h6 class="name">
+      <a [routerLink]="['/details', product.id]">
+        {{product.name}}
+      </a>
+    </h6>
+    <span class="amount">
+      На складе: {{product.availableAmount}}
+    </span>
+  </div>
+  <div class="counter">
+    <app-amount-counter [(ngModel)]="amount" [max]="product.availableAmount" (ngModelChange)="recalculatePrice()"></app-amount-counter>
+  </div>
+  <ul class="delivery">
+    <li>Курьером: сегодня</li>
+    <li>Самовывоз: завтра</li>
+  </ul>
+  <span class="price">
+    {{price | currency: "BYN":"symbol":"1.0-2":"ru"}}
+  </span>
+</div>

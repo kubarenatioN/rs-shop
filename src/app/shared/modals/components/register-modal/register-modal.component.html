@@ -1,0 +1,53 @@
+<div class="register-modal__wrapper">  
+  <h4 class="title">Вход</h4>
+  <form #form="ngForm" (ngSubmit)="confirm()">
+    <div class="form-group">
+      <label for="firstName">Имя</label>
+      <input 
+        type="text" 
+        id="firstName"
+        name="firstName"
+        required
+        [(ngModel)]="model.firstName">
+    </div>
+    <div class="form-group">
+      <label for="lastName">Фамилия</label>
+      <input 
+        type="text" 
+        id="lastName"
+        name="lastName"
+        required
+        [(ngModel)]="model.lastName">
+    </div>
+    <div class="form-group">
+      <label for="email">Логин</label>
+      <input 
+        type="text" 
+        id="email"
+        name="email"
+        required
+        [(ngModel)]="model.login">
+    </div>
+    <div class="form-group">
+      <label for="password">Пароль</label>
+      <input 
+        type="password" 
+        id="password"
+        name="password"
+        required
+        [(ngModel)]="model.password">
+    </div>
+    <button 
+    class="btn-blue register-btn"
+    [disabled]="!form.valid"
+    type="submit">Зарегистрироваться</button>
+  </form>
+  
+  <button 
+  class="close-btn btn-reset"
+  (click)="close()">
+    <span class="material-icons-outlined">
+      close
+    </span>
+  </button>
+</div>

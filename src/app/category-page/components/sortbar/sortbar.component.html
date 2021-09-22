@@ -1,0 +1,22 @@
+<span>Сортировать по:</span>
+<button 
+(click)="onSort(sortType.Price)"
+class="btn-sort btn-reset"
+[ngClass]="{
+  active: options.type === sortType.Price,
+  desc: options.order === -1 && options.type === sortType.Price
+}">цене</button>
+<button 
+(click)="onSort(sortType.Rating)"
+class="btn-sort btn-reset"
+[ngClass]="{
+  active: options.type === sortType.Rating,
+  desc: options.order === -1 && options.type === sortType.Rating
+}">популярности</button>
+<button 
+(click)="onSort(sortType.Amount)"
+class="btn-sort btn-reset"
+[ngClass]="{
+  active: options.type === sortType.Amount,
+  desc: options.order === -1 && options.type === sortType.Amount
+}">количеству</button>
